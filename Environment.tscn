@@ -29,4 +29,5 @@
 z_index = -1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 1
 format = 1
