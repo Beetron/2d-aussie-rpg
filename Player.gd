@@ -1,5 +1,4 @@
-extends Area2D
-
+extends KinematicBody2D
 
 export var maxSpeed = 300
 export var accelerationMagnitude = 2500
@@ -7,7 +6,7 @@ export var stopFriction = 0.85
 export var friction = 0.95
 
 #var screen_size # Size of the game window.
-var velocity = Vector2(0,0)
+var velocity = Vector2()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -55,5 +54,8 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * clamp(velocity.length(), -maxSpeed, maxSpeed)
 	
-	position += velocity * delta
+	return
+	
+func _physics_process(delta):
+	move_and_slide(velocity)
 	return
