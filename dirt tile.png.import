@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/main character placeholder.png-3a878dea0c5d2c3256d01e53c0fec738.stex"
+path="res://.import/dirt tile.png-89413eebe50865d49c8d7ff73dd766d0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://main character placeholder.png"
-dest_files=[ "res://.import/main character placeholder.png-3a878dea0c5d2c3256d01e53c0fec738.stex" ]
+source_file="res://dirt tile.png"
+dest_files=[ "res://.import/dirt tile.png-89413eebe50865d49c8d7ff73dd766d0.stex" ]
 
 [params]
 
