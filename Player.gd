@@ -16,24 +16,30 @@ func _ready():
 	return
 
 func _process(delta):
-	#var velocity = Vector2() # The player's movement vector.
 	var acceleration = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		acceleration.x += 1
+		$AnimatedSprite.animation = "Right"
 	if Input.is_action_pressed("ui_left"):
 		acceleration.x -= 1
+		$AnimatedSprite.animation = "Left"
 	if Input.is_action_pressed("ui_down"):
 		acceleration.y += 1
+		$AnimatedSprite.animation = "Down"
 	if Input.is_action_pressed("ui_up"):
 		acceleration.y -= 1
+		$AnimatedSprite.animation = "Up"
 	if !(Input.is_action_pressed("ui_left") or
 		   Input.is_action_pressed("ui_right") or
 		   Input.is_action_pressed("ui_down") or
 		   Input.is_action_pressed("ui_up")):
 		velocity = velocity * stopFriction #Apply extra friction to slow to a stop with no actions
-		
+		$AnimatedSprite.stop()
+		$AnimatedSprite.frame = 1 #Set animation to a "Neutral" position
+			
 	if acceleration.length() > 0:
 		acceleration = acceleration.normalized() * accelerationMagnitude
+		$AnimatedSprite.play()
 	
 	velocity += acceleration * delta #Apply acceleration
 	velocity = velocity * friction #Apply friction
