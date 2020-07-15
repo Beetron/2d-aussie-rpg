@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/aussiedudespritesheet.png-5ed22e64ecb08ce2328047aa3be1f8c8.stex"
+path="res://.import/grass tile.png-a892c4e0ada1daa7e20a6239bd88bebf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aussiedudespritesheet.png"
-dest_files=[ "res://.import/aussiedudespritesheet.png-5ed22e64ecb08ce2328047aa3be1f8c8.stex" ]
+source_file="res://img/grass tile.png"
+dest_files=[ "res://.import/grass tile.png-a892c4e0ada1daa7e20a6239bd88bebf.stex" ]
 
 [params]
 

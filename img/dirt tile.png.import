@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grass tile.png-7f7b8f82581e36fc5c2ba379d763ce51.stex"
+path="res://.import/dirt tile.png-75c46c64123fe37f4ba0fb58380e8736.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grass tile.png"
-dest_files=[ "res://.import/grass tile.png-7f7b8f82581e36fc5c2ba379d763ce51.stex" ]
+source_file="res://img/dirt tile.png"
+dest_files=[ "res://.import/dirt tile.png-75c46c64123fe37f4ba0fb58380e8736.stex" ]
 
 [params]
 

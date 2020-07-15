@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dirt tile.png-89413eebe50865d49c8d7ff73dd766d0.stex"
+path="res://.import/aussiedudespritesheet.png-96bef999598c5823b6e36d84800ea6fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dirt tile.png"
-dest_files=[ "res://.import/dirt tile.png-89413eebe50865d49c8d7ff73dd766d0.stex" ]
+source_file="res://img/aussiedudespritesheet.png"
+dest_files=[ "res://.import/aussiedudespritesheet.png-96bef999598c5823b6e36d84800ea6fc.stex" ]
 
 [params]
 

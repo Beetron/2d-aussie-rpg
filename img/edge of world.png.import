@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/edge of world.png-55a19b72486abed83227275b0544af1c.stex"
+path="res://.import/edge of world.png-e2d5bff483db24932fdaeed3f5423999.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://edge of world.png"
-dest_files=[ "res://.import/edge of world.png-55a19b72486abed83227275b0544af1c.stex" ]
+source_file="res://img/edge of world.png"
+dest_files=[ "res://.import/edge of world.png-e2d5bff483db24932fdaeed3f5423999.stex" ]
 
 [params]
 
