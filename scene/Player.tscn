@@ -36,32 +36,32 @@ region = Rect2( 256, 0, 32, 32 )
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 32, 32 )
+region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 352, 0, 32, 32 )
+region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 288, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 32, 32 )
+region = Rect2( 320, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 160, 0, 32, 32 )
+region = Rect2( 352, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
@@ -77,12 +77,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 8 ) ],
 "loop": true,
-"name": "Right",
+"name": "Up",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 11 ) ],
 "loop": true,
-"name": "Up",
+"name": "Right",
 "speed": 5.0
 } ]
 
@@ -110,3 +110,7 @@ drag_margin_left = 0.1
 drag_margin_top = 0.1
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

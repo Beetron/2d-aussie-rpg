@@ -1,21 +1,32 @@
 extends KinematicBody2D
 
+const Boomerang = preload("res://scene/Boomerang.tscn")
+
+signal throwWeapon(weapon, playerPos, eventPos)
+
 export var maxSpeed = 300
 export var accelerationMagnitude = 2500
 export var stopFriction = 0.85
 export var friction = 0.95
+export var throwStrength = 350
 
 #var screen_size # Size of the game window.
-var velocity = Vector2()
+var velocity = Vector2.ZERO
+var attackDisabled = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.connect("throwWeapon", get_parent(), "playerThrowWeapon")
 	#screen_size = get_viewport_rect().size
 	return
 
 func _process(delta):
-	var acceleration = Vector2()
+	handleMovement(delta)
+	return
+	
+func handleMovement(delta):
+	var acceleration = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
 		acceleration.x += 1
 	if Input.is_action_pressed("ui_left"):
@@ -53,9 +64,24 @@ func _process(delta):
 	#Avoid diagionals being faster	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * clamp(velocity.length(), -maxSpeed, maxSpeed)
+	return
 	
+func attack(event):
+	if(attackDisabled == false):
+		$AttackTimer.start()
+		attackDisabled = true
+		emit_signal("throwWeapon", Boomerang, self.global_position, get_global_mouse_position(), throwStrength)
+	
+func _input(event):
+	if event.is_action_pressed("game_attack"):
+		attack(event)
 	return
 	
 func _physics_process(delta):
 	move_and_slide(velocity)
+	return
+
+
+func _on_AttackTimer_timeout():
+	attackDisabled = false
 	return
