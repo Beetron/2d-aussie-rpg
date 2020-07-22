@@ -12,7 +12,9 @@ func _ready():
 	return
 	
 func initLevelList():
-	levelList.push_back("res://scene/TestLevel.tscn")
+	levelList.push_back("res://scene/Level 1.tscn")
+	levelList.push_back("res://scene/Level 2.tscn")
+	levelList.push_back("res://scene/BossLevel.tscn")
 	return
 
 func removeCurrentLevel():
