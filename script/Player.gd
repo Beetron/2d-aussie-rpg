@@ -101,3 +101,7 @@ func equipWeapon(newWeapon):
 			$AttackTimer.wait_time = boomerangAttackSpeed
 			throwStrength = boomerangThrowStrength
 	return
+
+func boomerangReturned():
+	boomerangThrown = false
+	return

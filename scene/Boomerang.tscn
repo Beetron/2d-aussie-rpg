@@ -13,7 +13,7 @@ height = 17.0834
 
 [sub_resource type="Animation" id=3]
 resource_name = "spin"
-length = 0.8
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -22,17 +22,18 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
 }
 
 [node name="Node2D" type="RigidBody2D"]
-rotation = 2.87264
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -46,7 +47,19 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 9.25572, 2.42072 )
 rotation = -0.246091
+scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/spin = SubResource( 3 )
+
+[node name="ReturnTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+[connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
+[connection signal="timeout" from="ReturnTimer" to="." method="_on_ReturnTimer_timeout"]
+[connection signal="timeout" from="CollisionTimer" to="." method="_on_CollisionTimer_timeout"]
