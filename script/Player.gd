@@ -20,7 +20,6 @@ export var HP : int
 
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
-var attackDisabled = false
 var boomerangThrown = false
 
 # Called when the node enters the scene tree for the first time.
@@ -75,9 +74,8 @@ func handleMovement(delta):
 	return
 	
 func attack(event):
-	if(attackDisabled == false):
+	if($AttackTimer.is_stopped()):
 		$AttackTimer.start()
-		attackDisabled = true
 		if(!boomerangThrown):
 			emit_signal("throwWeapon", currentWeapon, self, get_global_mouse_position(), throwStrength)
 			boomerangThrown = true
@@ -91,11 +89,6 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	return
 
-
-func _on_AttackTimer_timeout():
-	attackDisabled = false
-	return
-	
 func equipWeapon(newWeapon):
 	match(newWeapon):
 		Weapon.BOOMERANG:

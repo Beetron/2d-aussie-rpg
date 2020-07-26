@@ -4,8 +4,6 @@ export var speed = 600
 export var damage : int
 
 var player
-var boomerangReturning = false
-
 
 func _ready():
 	$AnimationPlayer.play("spin")
@@ -16,16 +14,10 @@ func init(playerNode):
 	return
 
 func _integrate_forces(state):
-	if(boomerangReturning):
+	if($ReturnTimer.is_stopped()):
 		var velocity = (player.position - position).normalized() * speed
 		set_linear_velocity(velocity)
 	return
-
-
-func _on_ReturnTimer_timeout():
-	boomerangReturning = true
-	return
-
 
 func _on_CollisionTimer_timeout():
 	#When boomerang returns, we want it to collide with the player again
@@ -36,7 +28,6 @@ func _on_Node2D_body_entered(body):
 	if(body == player):
 		body.boomerangReturned()
 		queue_free()
-		boomerangReturning = false
 	elif(body.is_in_group("enemies")):
 		body.dealDamage(damage)
 	return
