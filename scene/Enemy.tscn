@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scene/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://script/Enemy.gd" type="Script" id=1]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",

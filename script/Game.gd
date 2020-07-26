@@ -2,6 +2,7 @@ extends Node
 
 var currentLevel
 var levelList = []
+var pauseActive = false
 
 func _ready():
 	initLevelList()
@@ -28,4 +29,25 @@ func load_next_level():
 	var nextLevel = nextLevelResource.instance()
 	add_child(nextLevel)
 	currentLevel = nextLevel
+	return
+	
+
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		if(!pauseActive):
+			pause()
+		else:
+			unpause()
+	return
+
+func pause():
+	get_tree().paused = true
+	$PauseMenu/GUI.show()
+	pauseActive = true
+	return
+
+func unpause():
+	$PauseMenu/GUI.hide()
+	get_tree().paused = false
+	pauseActive = false
 	return
