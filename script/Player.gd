@@ -16,6 +16,8 @@ export var boomerangAttackSpeed = 0.2
 export var boomerangThrowStrength = 500
 export var throwStrength = 0
 
+export var HP : int
+
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
 var attackDisabled = false

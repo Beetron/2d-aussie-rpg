@@ -1,9 +1,11 @@
 extends RigidBody2D
 
 export var speed = 600
+export var damage : int
 
 var player
 var boomerangReturning = false
+
 
 func _ready():
 	$AnimationPlayer.play("spin")
@@ -26,8 +28,8 @@ func _on_ReturnTimer_timeout():
 
 
 func _on_CollisionTimer_timeout():
-	set_collision_mask_bit(0, true)
-	set_collision_layer_bit(0, true)
+	#When boomerang returns, we want it to collide with the player again
+	set_collision_mask_bit(1, true)
 	return
 
 func _on_Node2D_body_entered(body):
@@ -35,4 +37,6 @@ func _on_Node2D_body_entered(body):
 		body.boomerangReturned()
 		queue_free()
 		boomerangReturning = false
+	elif(body.is_in_group("enemies")):
+		body.dealDamage(damage)
 	return
