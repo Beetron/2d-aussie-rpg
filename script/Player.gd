@@ -16,7 +16,7 @@ export var boomerangAttackSpeed = 0.2
 export var boomerangThrowStrength = 500
 export var throwStrength = 0
 
-export var HP : int
+export var hp : int
 
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
@@ -99,4 +99,22 @@ func equipWeapon(newWeapon):
 
 func boomerangReturned():
 	boomerangThrown = false
+	return
+	
+func takeDamage(hitAmount):
+	if($DamageImmunity.is_stopped()):
+		hp = hp - hitAmount
+		print(hp)
+		if(hp <= 0):
+			#GameOver
+			return
+			
+		$DamageImmunity.start()
+		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		#Play hit animation
+	return
+
+
+func _on_DamageImmunity_timeout():
+	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
 	return

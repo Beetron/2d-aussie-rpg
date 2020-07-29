@@ -9,6 +9,7 @@ var path : PoolVector2Array
 var player : Node2D
 var nav : Navigation2D
 var rng = RandomNumberGenerator.new()
+var movementFrozen : bool
 
 func _ready():
 	player = get_parent().get_node("Player")
@@ -26,6 +27,7 @@ func takeDamage(hitAmount):
 			
 		$DamageImmunity.start()
 		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		movementFrozen = true
 		#Play hit animation
 	return
 
@@ -35,10 +37,11 @@ func died():
 	return
 
 func _physics_process(delta):
-	if(checkInAttackRange()):
-		moveToPlayer()
-	else:
-		moveRandomly()
+	if(movementFrozen == false):
+		if(checkInAttackRange()):
+			moveToPlayer()
+		else:
+			moveRandomly()
 	return
 	
 func checkInAttackRange() -> bool:
@@ -70,6 +73,7 @@ func moveRandomly():
 	
 func _on_DamageImmunity_timeout():
 	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
+	movementFrozen = false
 	return
 
 #Pick a random direction to walk in

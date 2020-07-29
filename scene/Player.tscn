@@ -101,6 +101,7 @@ currentWeapon = {
 "MAGICBOOMERANG": 1
 }
 boomerangThrowStrength = 750
+hp = 3
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
@@ -121,3 +122,8 @@ drag_margin_bottom = 0.1
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="DamageImmunity" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+[connection signal="timeout" from="DamageImmunity" to="." method="_on_DamageImmunity_timeout"]
