@@ -7,6 +7,8 @@ func _ready():
 	return
 
 func _process(delta):
+	#var path = $Navigation2D.get_simple_path($Explodetoad.position, $Player.position)
+	#$PathDebug.points = path
 	return
 
 func playerThrowWeapon(Weapon, Player, eventPos, throwStrength):

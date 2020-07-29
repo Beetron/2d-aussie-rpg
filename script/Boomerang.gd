@@ -29,5 +29,5 @@ func _on_Node2D_body_entered(body):
 		body.boomerangReturned()
 		queue_free()
 	elif(body.is_in_group("enemies")):
-		body.dealDamage(damage)
+		body.takeDamage(damage)
 	return
