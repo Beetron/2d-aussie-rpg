@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/explodetoad.png-d721dca15e757807ebdde9a1229fff8c.stex"
+path="res://.import/toadspritesheet.png-82902248dbcdce2f12f82f1c0593f114.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/explodetoad.png"
-dest_files=[ "res://.import/explodetoad.png-d721dca15e757807ebdde9a1229fff8c.stex" ]
+source_file="res://img/toadspritesheet.png"
+dest_files=[ "res://.import/toadspritesheet.png-82902248dbcdce2f12f82f1c0593f114.stex" ]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

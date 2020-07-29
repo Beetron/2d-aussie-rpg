@@ -1,6 +1,10 @@
 extends "res://script/Enemy.gd"
 
+var originalSpeed : float
 
+func _ready():
+	originalSpeed = speed
+	return
 
 func _on_ExplosionZone_body_entered(body):
 	if(body == player):
@@ -13,6 +17,14 @@ func triggerExplosion():
 	#Play explosion animation
 	return
 
+func _process(delta):
+	if(path.size() > 0):
+		look_at(path[0])
+	if($AnimatedSprite.frame < 2):
+		speed = 0
+	else:
+		speed = originalSpeed
+	return
 
 
 func _on_ExplodeTimer_timeout():
