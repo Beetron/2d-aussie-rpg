@@ -32,9 +32,7 @@ func takeDamage(hitAmount):
 	return
 
 func died():
-	queue_free()
-	#Play death animation
-	return
+	pass
 
 func _physics_process(delta):
 	if(movementFrozen == false):

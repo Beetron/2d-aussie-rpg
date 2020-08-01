@@ -25,12 +25,12 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Explodetoad2" parent="." index="3" instance=ExtResource( 2 )]
-position = Vector2( -205.075, -193.883 )
+position = Vector2( -265.816, 182.194 )
 collision_layer = 1
 collision_mask = 1
 
 [node name="Explodetoad3" parent="." index="4" instance=ExtResource( 2 )]
-position = Vector2( -360.875, -157.783 )
+position = Vector2( 267.212, 112.32 )
 collision_layer = 1
 collision_mask = 1
 
@@ -40,7 +40,7 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Explodetoad5" parent="." index="6" instance=ExtResource( 2 )]
-position = Vector2( -274.425, -237.583 )
+position = Vector2( 171.439, -166.503 )
 collision_layer = 1
 collision_mask = 1
 
@@ -50,7 +50,7 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Explodetoad7" parent="." index="8" instance=ExtResource( 2 )]
-position = Vector2( -272.525, -132.132 )
+position = Vector2( -24.3919, 201.297 )
 collision_layer = 1
 collision_mask = 1
 
