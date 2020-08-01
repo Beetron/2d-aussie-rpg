@@ -1,6 +1,7 @@
 extends Node2D
 
 const ToadCorpse = preload("res://scene/ToadCorpse.tscn")
+const ToadExplosionParticle = preload("res://scene/ExplosionParticle.tscn")
 
 signal load_next_level
 
@@ -23,9 +24,15 @@ func playerThrowWeapon(Weapon, Player, eventPos, throwStrength):
 	weapon.apply_central_impulse(throwImpulse)
 	return
 
-func toadDied(originalPosition, originalRotation):
+func toadDied(originalPosition):
 	var toadCorpse = ToadCorpse.instance()
 	toadCorpse.position = originalPosition
-	toadCorpse.rotation = originalRotation
 	add_child(toadCorpse)
+	return
+
+func toadParticles(originalPosition):
+	var explosion = ToadExplosionParticle.instance()
+	explosion.position = originalPosition
+	explosion.one_shot = true
+	add_child(explosion)
 	return

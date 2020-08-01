@@ -4,7 +4,7 @@ export var hp : int
 export var damage : int
 export var speed : int
 var wanderDistance = 100.0
-var attackRange = 300.0
+var attackRange = 250.0
 var path : PoolVector2Array
 var player : Node2D
 var nav : Navigation2D
@@ -20,13 +20,10 @@ func _ready():
 func takeDamage(hitAmount):
 	if($DamageImmunity.is_stopped()):
 		hp = hp - hitAmount
-		
 		if(hp <= 0):
 			died()
-			return
-			
-		$DamageImmunity.start()
 		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		$DamageImmunity.start()
 		movementFrozen = true
 		#Play hit animation
 	return
@@ -60,7 +57,7 @@ func moveToPlayer():
 	return
 
 func moveRandomly():
-	var distance_to_move = speed / 2
+	var distance_to_move = speed / 4
 	while distance_to_move > 0 and path.size() > 0:
 		var distance_to_next_point = position.distance_to(path[0])
 		move_and_slide(position.direction_to(path[0]) * distance_to_move)
