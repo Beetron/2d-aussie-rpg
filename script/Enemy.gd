@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var hp : int
 export var damage : int
-export var speed : int
+export var speed : float
 var wanderDistance = 100.0
 var attackRange = 250.0
 var path : PoolVector2Array
@@ -31,7 +31,7 @@ func takeDamage(hitAmount):
 func died():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(movementFrozen == false):
 		if(checkInAttackRange()):
 			moveToPlayer()
@@ -57,7 +57,7 @@ func moveToPlayer():
 	return
 
 func moveRandomly():
-	var distance_to_move = speed / 4
+	var distance_to_move = speed / 4.0
 	while distance_to_move > 0 and path.size() > 0:
 		var distance_to_next_point = position.distance_to(path[0])
 		move_and_slide(position.direction_to(path[0]) * distance_to_move)

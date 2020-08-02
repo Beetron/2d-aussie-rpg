@@ -13,7 +13,7 @@ func init(playerNode):
 	player = playerNode
 	return
 
-func _integrate_forces(state):
+func _integrate_forces(_state):
 	if($ReturnTimer.is_stopped()):
 		var velocity = (player.position - position).normalized() * speed
 		set_linear_velocity(velocity)

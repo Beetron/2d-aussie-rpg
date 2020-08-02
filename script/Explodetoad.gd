@@ -23,7 +23,7 @@ func triggerExplosion():
 	$AnimatedSprite.play("Inflate")
 	return
 
-func _process(delta):
+func _process(_delta):
 	#Movement behaviour for players
 	if(checkInAttackRange()):
 		look_at(player.position)

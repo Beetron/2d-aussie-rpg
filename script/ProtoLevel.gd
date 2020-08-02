@@ -10,7 +10,7 @@ func _ready():
 	self.connect("load_next_level", get_parent(), "load_next_level")
 	return
 
-func _process(delta):
+func _process(_delta):
 	#var path = $Navigation2D.get_simple_path($Explodetoad.position, $Player.position)
 	#$PathDebug.points = path
 	return

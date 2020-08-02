@@ -18,6 +18,9 @@ export var throwStrength = 0
 
 export var hp : int
 
+var state_machine
+var lastDirection = "Down"
+
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
 var boomerangThrown = false
@@ -26,6 +29,8 @@ var boomerangThrown = false
 func _ready():
 	equipWeapon(Weapon.BOOMERANG)
 	self.connect("throwWeapon", get_parent(), "playerThrowWeapon")
+	$AnimationTree.active = true
+	state_machine = $AnimationTree.get("parameters/playback")
 	return
 
 func _process(delta):
@@ -47,23 +52,25 @@ func handleMovement(delta):
 		   Input.is_action_pressed("ui_down") or
 		   Input.is_action_pressed("ui_up")):
 		velocity = velocity * stopFriction #Apply extra friction to slow to a stop with no actions
-		$AnimatedSprite.stop()
-		$AnimatedSprite.frame = 1 #Set animation to a "Neutral" position
+		state_machine.travel("Idle"+lastDirection)
 			
 	if acceleration.x != 0:
 		if acceleration.x > 0:
-			$AnimatedSprite.animation = "Right"
+			state_machine.travel("Right")
+			lastDirection = "Right"
 		else:
-			$AnimatedSprite.animation = "Left"
+			state_machine.travel("Left")
+			lastDirection = "Left"
 	elif acceleration.y != 0:
 		if acceleration.y > 0:
-			$AnimatedSprite.animation = "Down"
+			state_machine.travel("Down")
+			lastDirection = "Down"
 		else:
-			$AnimatedSprite.animation = "Up"
+			state_machine.travel("Up")
+			lastDirection = "Up"
 	
 	if acceleration.length() > 0:
 		acceleration = acceleration.normalized() * accelerationMagnitude
-		$AnimatedSprite.play()
 	
 	velocity += acceleration * delta #Apply acceleration
 	velocity = velocity * friction #Apply friction
@@ -73,7 +80,7 @@ func handleMovement(delta):
 		velocity = velocity.normalized() * clamp(velocity.length(), -maxSpeed, maxSpeed)
 	return
 	
-func attack(event):
+func attack(_event):
 	if($AttackTimer.is_stopped()):
 		$AttackTimer.start()
 		if(!boomerangThrown):
@@ -85,7 +92,7 @@ func _input(event):
 		attack(event)
 	return
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide(velocity)
 	return
 
@@ -110,11 +117,11 @@ func takeDamage(hitAmount):
 			return
 			
 		$DamageImmunity.start()
-		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		$Sprite.modulate = Color(3, 0, 0, 1)
 		#Play hit animation
 	return
 
 
 func _on_DamageImmunity_timeout():
-	$AnimatedSprite.modulate = Color(1, 1, 1, 1)
+	$Sprite.modulate = Color(1, 1, 1, 1)
 	return
