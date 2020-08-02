@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://img/crate.png" type="Texture" id=1]
+[ext_resource path="res://script/Crate.gd" type="Script" id=2]
+[ext_resource path="res://particle/crateparticlelargespritesheet.png" type="Texture" id=3]
+[ext_resource path="res://particle/crateparticlessmall.png" type="Texture" id=4]
+[ext_resource path="res://particle/crateparticlesmedium.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16.0343, 15.9664 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 30.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Crate" type="RigidBody2D" groups=[
+"breakable",
+]]
+collision_layer = 16
+collision_mask = 31
+mode = 1
+gravity_scale = 0.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LargeParticle" type="Particles2D" parent="."]
+material = SubResource( 5 )
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="MediumParticle" type="Particles2D" parent="."]
+material = SubResource( 5 )
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 5 )
+
+[node name="SmallParticle" type="Particles2D" parent="."]
+material = SubResource( 5 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 4 )
+
+[node name="RemoveTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+[connection signal="timeout" from="RemoveTimer" to="." method="_on_RemoveTimer_timeout"]

@@ -30,4 +30,6 @@ func _on_Node2D_body_entered(body):
 		queue_free()
 	elif(body.is_in_group("enemies")):
 		body.takeDamage(damage)
+	elif(body.is_in_group("breakable")):
+		body.breakApart()
 	return
