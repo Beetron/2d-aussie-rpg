@@ -9,13 +9,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.0343, 15.9664 )
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=2]
 particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 10, 10, 1 )
 flag_disable_z = true
@@ -32,6 +32,7 @@ anim_offset_random = 1.0
 [node name="Crate" type="RigidBody2D" groups=[
 "breakable",
 ]]
+z_index = 1
 collision_layer = 16
 collision_mask = 31
 mode = 1
@@ -45,32 +46,32 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="LargeParticle" type="Particles2D" parent="."]
-material = SubResource( 5 )
+material = SubResource( 2 )
 emitting = false
 amount = 2
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 2 )
+process_material = SubResource( 3 )
 texture = ExtResource( 3 )
 
 [node name="MediumParticle" type="Particles2D" parent="."]
-material = SubResource( 5 )
+material = SubResource( 2 )
 emitting = false
 amount = 4
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 2 )
+process_material = SubResource( 3 )
 texture = ExtResource( 5 )
 
 [node name="SmallParticle" type="Particles2D" parent="."]
-material = SubResource( 5 )
+material = SubResource( 2 )
 emitting = false
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 2 )
+process_material = SubResource( 3 )
 texture = ExtResource( 4 )
 
 [node name="RemoveTimer" type="Timer" parent="."]

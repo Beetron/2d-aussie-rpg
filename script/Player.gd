@@ -125,3 +125,4 @@ func takeDamage(hitAmount):
 func _on_DamageImmunity_timeout():
 	$Sprite.modulate = Color(1, 1, 1, 1)
 	return
+

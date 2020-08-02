@@ -2,6 +2,7 @@ extends Node2D
 
 const ToadCorpse = preload("res://scene/ToadCorpse.tscn")
 const ToadExplosionParticle = preload("res://scene/ExplosionParticle.tscn")
+const Coins = preload("res://scene/Coins.tscn")
 
 signal load_next_level
 
@@ -35,4 +36,10 @@ func toadParticles(originalPosition):
 	explosion.position = originalPosition
 	explosion.one_shot = true
 	add_child(explosion)
+	return
+
+func spawnCoins(cratePosition):
+	var coins = Coins.instance()
+	coins.position = cratePosition
+	add_child(coins)
 	return
