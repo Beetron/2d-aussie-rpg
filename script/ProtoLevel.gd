@@ -43,3 +43,7 @@ func spawnCoins(cratePosition):
 	coins.position = cratePosition
 	add_child(coins)
 	return
+
+func LoadNextLevel():
+	emit_signal("load_next_level")
+	return

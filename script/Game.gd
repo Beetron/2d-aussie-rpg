@@ -31,7 +31,6 @@ func load_next_level():
 	currentLevel = nextLevel
 	return
 	
-
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		if(!pauseActive):
