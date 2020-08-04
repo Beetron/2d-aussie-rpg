@@ -2,31 +2,31 @@ extends Node
 
 const MainMenu = preload("res://scene/MainMenu.tscn")
 
-var currentScene
+var current_scene
 
 func _ready():
 	var menu = MainMenu.instance()
 	add_child(menu)
-	currentScene = menu
+	current_scene = menu
 	return
 	
-func removeCurrentScene():
-	remove_child(currentScene)
-	currentScene.call_deferred("free")
+func remove_current_scene():
+	remove_child(current_scene)
+	current_scene.call_deferred("free")
 	return
 	
 func load_game():
-	removeCurrentScene()
-	var gameResource = load("res://scene/Game.tscn")
-	var game = gameResource.instance()
+	remove_current_scene()
+	var game_resource = load("res://scene/Game.tscn")
+	var game = game_resource.instance()
 	add_child(game)
-	currentScene = game
+	current_scene = game
 	return
 	
 func load_options():
-	removeCurrentScene()
-	var optionResource = load("res://scene/Options.tscn")
-	var option = optionResource.instance()
+	remove_current_scene()
+	var option_resource = load("res://scene/Options.tscn")
+	var option = option_resource.instance()
 	add_child(option)
-	currentScene = option
+	current_scene = option
 	return

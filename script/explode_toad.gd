@@ -1,22 +1,22 @@
-extends "res://script/Enemy.gd"
+extends Enemy
 
-var originalSpeed : float
-signal toadDied(position)
-signal toadParticles(position)
+var original_speed : float
+signal toad_died(position)
+signal toad_exploded(position)
 var dying = false
 
 func _ready():
-	originalSpeed = speed
-	self.connect("toadDied", get_parent(), "toadDied")
-	self.connect("toadParticles", get_parent(), "toadParticles")
+	original_speed = speed
+	self.connect("toad_died", get_parent(), "spawn_toad_corpse")
+	self.connect("toad_exploded", get_parent(), "spawn_toad_particles")
 	return
 
 func _on_ExplosionZone_body_entered(body):
 	if(body == player):
-		triggerExplosion()
+		trigger_explosion()
 	return
 	
-func triggerExplosion():
+func trigger_explosion():
 	dying = true
 	speed = 0
 	$ExplodeTimer.start()
@@ -25,14 +25,14 @@ func triggerExplosion():
 
 func _process(_delta):
 	#Movement behaviour for players
-	if(checkInAttackRange()):
+	if(check_in_attack_range()):
 		look_at(player.position)
 		if(dying == false):
 			$AnimatedSprite.play("Walk")
 			if($AnimatedSprite.frame < 2):
 				speed = 0
 			else:
-				speed = originalSpeed
+				speed = original_speed
 	elif(path.size() > 0):
 		look_at(path[0])
 		if(dying == false):
@@ -43,21 +43,21 @@ func _process(_delta):
 	return
 	
 func _on_ExplodeTimer_timeout():
-	emit_signal("toadParticles", position)
+	emit_signal("toad_exploded", position)
 	$AnimatedSprite.play("Explode")
 	$CollisionShape2D.set_deferred("disabled", true)
 	if($ExplosionZone.overlaps_body(player)):
-		player.takeDamage(damage)
+		player.take_damage(damage)
 	$DeathTimer.start()
 	return
 	
 func died():
 	if(dying == false):
-		triggerExplosion()
+		trigger_explosion()
 	return
 
 
 func _on_DeathTimer_timeout():
 	call_deferred("queue_free")
-	emit_signal("toadDied", position)
+	emit_signal("toad_died", position)
 	return

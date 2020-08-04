@@ -7,7 +7,7 @@ func _ready():
 	$Sprite.frame = rng.randi_range(0,3)
 	return
 
-func coinsPickedUp():
+func coins_picked_up():
 	$Sparkle.emitting = true
 	emit_signal("SpawnCoins", position)
 	$Sprite.visible = false	
@@ -22,5 +22,5 @@ func _on_RemoveTimer_timeout():
 
 func _on_Coins_body_entered(body):
 	if(body.is_in_group("player")):
-		coinsPickedUp()
+		coins_picked_up()
 	return

@@ -1,15 +1,15 @@
 extends Control
 
-signal load_game
-signal load_options
+signal start_button_pressed
+signal load_button_pressed
 
 func _ready():
-	self.connect("load_game", get_parent(), "load_game")
-	self.connect("load_options", get_parent(), "load_options")
+	self.connect("start_button_pressed", get_parent(), "load_game")
+	self.connect("load_button_pressed", get_parent(), "load_options")
 	return
 
 func _on_Start_Game_pressed():
-	emit_signal("load_game")
+	emit_signal("start_button_pressed")
 	return
 
 func _on_Options_pressed():

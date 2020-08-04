@@ -1,39 +1,39 @@
 extends Node
 
-var currentLevel
-var levelList = []
-var pauseActive = false
+var current_level
+var level_list = []
+var pause_active = false
 
 func _ready():
-	initLevelList()
-	var firstLevelResource = load(levelList.pop_front())
-	var firstLevel = firstLevelResource.instance()
-	add_child(firstLevel)
-	currentLevel = firstLevel
+	init_level_list()
+	var first_level_resource = load(level_list.pop_front())
+	var first_level = first_level_resource.instance()
+	add_child(first_level)
+	current_level = first_level
 	return
 	
-func initLevelList():
-	levelList.push_back("res://scene/Level 1.tscn")
-	levelList.push_back("res://scene/Level 2.tscn")
-	levelList.push_back("res://scene/BossLevel.tscn")
+func init_level_list():
+	level_list.push_back("res://scene/Level 1.tscn")
+	level_list.push_back("res://scene/Level 2.tscn")
+	level_list.push_back("res://scene/BossLevel.tscn")
 	return
 
-func removeCurrentLevel():
-	remove_child(currentLevel)
-	currentLevel.call_deferred("free")
+func remove_current_level():
+	remove_child(current_level)
+	current_level.call_deferred("free")
 	return
 	
 func load_next_level():
-	removeCurrentLevel()
-	var nextLevelResource = load(levelList.pop_front())
-	var nextLevel = nextLevelResource.instance()
-	add_child(nextLevel)
-	currentLevel = nextLevel
+	remove_current_level()
+	var next_level_resource = load(level_list.pop_front())
+	var next_level = next_level_resource.instance()
+	add_child(next_level)
+	current_level = next_level
 	return
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
-		if(!pauseActive):
+		if(!pause_active):
 			pause()
 		else:
 			unpause()
@@ -42,11 +42,11 @@ func _process(_delta):
 func pause():
 	get_tree().paused = true
 	$PauseMenu/GUI.show()
-	pauseActive = true
+	pause_active = true
 	return
 
 func unpause():
 	$PauseMenu/GUI.hide()
 	get_tree().paused = false
-	pauseActive = false
+	pause_active = false
 	return

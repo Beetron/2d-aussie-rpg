@@ -3,14 +3,10 @@ extends RigidBody2D
 export var speed = 600
 export var damage : int
 
-var player
+onready var player = get_parent().get_node("Player")
 
 func _ready():
 	$AnimationPlayer.play("spin")
-	return
-
-func init(playerNode):
-	player = playerNode
 	return
 
 func _integrate_forces(_state):
@@ -26,10 +22,10 @@ func _on_CollisionTimer_timeout():
 
 func _on_Node2D_body_entered(body):
 	if(body == player):
-		body.boomerangReturned()
+		body.boomerang_returned()
 		call_deferred("queue_free")
 	elif(body.is_in_group("enemies")):
-		body.takeDamage(damage)
+		body.take_damage(damage)
 	elif(body.is_in_group("breakable")):
-		body.breakApart()
+		body.break_apart()
 	return
