@@ -30,5 +30,5 @@ func _process(delta):
 	return
 
 func _on_RemoveTimer_timeout():
-	queue_free()
+	call_deferred("queue_free")
 	return

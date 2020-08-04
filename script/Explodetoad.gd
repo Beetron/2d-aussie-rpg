@@ -45,7 +45,7 @@ func _process(_delta):
 func _on_ExplodeTimer_timeout():
 	emit_signal("toadParticles", position)
 	$AnimatedSprite.play("Explode")
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
 	if($ExplosionZone.overlaps_body(player)):
 		player.takeDamage(damage)
 	$DeathTimer.start()
@@ -58,6 +58,6 @@ func died():
 
 
 func _on_DeathTimer_timeout():
-	queue_free()
+	call_deferred("queue_free")
 	emit_signal("toadDied", position)
 	return

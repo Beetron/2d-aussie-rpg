@@ -27,7 +27,7 @@ func _on_CollisionTimer_timeout():
 func _on_Node2D_body_entered(body):
 	if(body == player):
 		body.boomerangReturned()
-		queue_free()
+		call_deferred("queue_free")
 	elif(body.is_in_group("enemies")):
 		body.takeDamage(damage)
 	elif(body.is_in_group("breakable")):
