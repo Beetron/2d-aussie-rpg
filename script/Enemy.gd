@@ -3,17 +3,16 @@ extends KinematicBody2D
 export var hp : int
 export var damage : int
 export var speed : float
-var wanderDistance = 100.0
-var attackRange = 250.0
+const wanderDistance = 100.0
+const attackRange = 250.0
 var path : PoolVector2Array
-var player : Node2D
-var nav : Navigation2D
 var rng = RandomNumberGenerator.new()
 var movementFrozen : bool
 
+onready var player = get_parent().get_node("Player")
+onready var nav = get_parent().get_node("Navigation2D")
+
 func _ready():
-	player = get_parent().get_node("Player")
-	nav = get_parent().get_node("Navigation2D")
 	rng.randomize()
 	return
 

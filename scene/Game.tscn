@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://script/Game.gd" type="Script" id=1]
+[ext_resource path="res://script/game.gd" type="Script" id=1]
 [ext_resource path="res://scene/PauseMenu.tscn" type="PackedScene" id=2]
+
 
 [node name="Game" type="Node"]
 pause_mode = 2

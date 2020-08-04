@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Level
+
 const ToadCorpse = preload("res://scene/ToadCorpse.tscn")
 const ToadExplosionParticle = preload("res://scene/ExplosionParticle.tscn")
 const Coins = preload("res://scene/Coins.tscn")
@@ -11,10 +13,10 @@ func _ready():
 	self.connect("load_next_level", get_parent(), "load_next_level")
 	return
 
-func _process(_delta):
+#func _process(_delta):
 	#var path = $Navigation2D.get_simple_path($Explodetoad.position, $Player.position)
 	#$PathDebug.points = path
-	return
+#	return
 
 func playerThrowWeapon(Weapon, Player, eventPos, throwStrength):
 	var weapon = Weapon.instance()

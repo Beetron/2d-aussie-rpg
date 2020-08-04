@@ -18,7 +18,7 @@ export var throwStrength = 0
 
 export var hp : int
 
-var state_machine
+onready var state_machine = $AnimationTree.get("parameters/playback")
 var lastDirection = "Down"
 
 #var screen_size # Size of the game window.
@@ -30,7 +30,6 @@ func _ready():
 	equipWeapon(Weapon.BOOMERANG)
 	self.connect("throwWeapon", get_parent(), "playerThrowWeapon")
 	$AnimationTree.active = true
-	state_machine = $AnimationTree.get("parameters/playback")
 	return
 
 func _process(delta):

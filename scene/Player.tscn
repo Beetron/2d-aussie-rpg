@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://img/aussiedudespritesheet.png" type="Texture" id=1]
-[ext_resource path="res://script/Player.gd" type="Script" id=2]
+[ext_resource path="res://script/player.gd" type="Script" id=2]
 [ext_resource path="res://anim/PlayerLeft.tres" type="Animation" id=3]
 [ext_resource path="res://anim/PlayerRight.tres" type="Animation" id=4]
 [ext_resource path="res://anim/PlayerUp.tres" type="Animation" id=5]
@@ -10,6 +10,7 @@
 [ext_resource path="res://anim/PlayerIdleDown.tres" type="Animation" id=8]
 [ext_resource path="res://anim/PlayerIdleLeft.tres" type="Animation" id=9]
 [ext_resource path="res://anim/PlayerIdleRight.tres" type="Animation" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )

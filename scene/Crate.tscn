@@ -1,10 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://img/crate.png" type="Texture" id=1]
-[ext_resource path="res://script/Crate.gd" type="Script" id=2]
+[ext_resource path="res://script/crate.gd" type="Script" id=2]
 [ext_resource path="res://particle/crateparticlelargespritesheet.png" type="Texture" id=3]
 [ext_resource path="res://particle/crateparticlessmall.png" type="Texture" id=4]
 [ext_resource path="res://particle/crateparticlesmedium.png" type="Texture" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.0343, 15.9664 )
