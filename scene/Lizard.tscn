@@ -75,5 +75,9 @@ wait_time = 3.0
 
 [node name="DespawnTimer" type="Timer" parent="." index="5"]
 wait_time = 10.0
+
+[node name="CollisionTimer" type="Timer" parent="." index="6"]
+wait_time = 0.4
+one_shot = true
 [connection signal="timeout" from="SpikeTimer" to="." method="_on_SpikeTimer_timeout"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_DespawnTimer_timeout"]

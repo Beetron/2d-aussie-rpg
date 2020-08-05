@@ -32,6 +32,15 @@ func _process(delta):
 		$AnimatedSprite.modulate = previous_color
 	return
 
+func _physics_process(_delta):
+	#Deal damage to player if they touch
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if $CollisionTimer.is_stopped() and collision.collider.name == "Player":
+			collision.collider.take_damage(damage)
+			$CollisionTimer.start()
+	return
+
 func attack():
 	emit_signal("spikes_fired", position, rotation, damage)
 	return
