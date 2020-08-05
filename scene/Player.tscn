@@ -11,7 +11,6 @@
 [ext_resource path="res://anim/PlayerIdleLeft.tres" type="Animation" id=9]
 [ext_resource path="res://anim/PlayerIdleRight.tres" type="Animation" id=10]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
@@ -112,11 +111,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-currentWeapon = {
-"BOOMERANG": 0,
-"MAGICBOOMERANG": 1
-}
-boomerangThrowStrength = 750
+max_speed = 150
 hp = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

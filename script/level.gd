@@ -5,6 +5,7 @@ class_name Level
 const ToadCorpse = preload("res://scene/ToadCorpse.tscn")
 const ToadExplosionParticle = preload("res://scene/ExplosionParticle.tscn")
 const Coins = preload("res://scene/Coins.tscn")
+const Spikes = preload("res://scene/Spikes.tscn")
 
 signal end_of_level_reached
 
@@ -43,6 +44,14 @@ func spawn_coins(crate_position):
 	var coins = Coins.instance()
 	coins.position = crate_position
 	add_child(coins)
+	return
+
+func spawn_lizard_spikes(lizard_position, lizard_rotation, lizard_attack):
+	var spikes = Spikes.instance()
+	spikes.position = lizard_position
+	spikes.rotation = lizard_rotation
+	spikes.damage = lizard_attack
+	add_child(spikes)
 	return
 
 func end_of_level_reached():
