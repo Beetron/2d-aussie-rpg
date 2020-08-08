@@ -9,11 +9,13 @@ const Spikes = preload("res://scene/Spikes.tscn")
 
 signal end_of_level_reached
 signal player_hp_changed(amount)
+signal coins_picked_up(amount)
 
 
 func _ready():
 	self.connect("end_of_level_reached", get_parent(), "load_next_level")
 	self.connect("player_hp_changed", get_parent(), "update_hp_bar")
+	self.connect("coins_picked_up", get_parent(), "update_coin_display")
 	return
 
 #func _process(_delta):
@@ -45,7 +47,7 @@ func spawn_toad_particles(original_position):
 func spawn_coins(crate_position):
 	var coins = Coins.instance()
 	coins.position = crate_position
-	add_child(coins)
+	call_deferred("add_child", coins)
 	return
 
 func spawn_lizard_spikes(lizard_position, lizard_rotation, lizard_attack):
@@ -62,4 +64,8 @@ func end_of_level_reached():
 
 func player_hp_changed(amount):
 	emit_signal("player_hp_changed", amount)
+	return
+	
+func coins_picked_up(amount):
+	emit_signal("coins_picked_up", amount)
 	return

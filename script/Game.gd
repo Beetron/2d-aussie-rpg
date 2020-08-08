@@ -58,3 +58,8 @@ func update_hp_bar(amount):
 	var hp_text = round(100 * (hpbar.value / hpbar.max_value))
 	hp_percent.text = hp_text as String + "%" 
 	return
+	
+func update_coin_display(amount):
+	var coins_display = get_node("GameUI/PlayerUI/Cash")
+	coins_display.text = "$" + amount as String
+	return
