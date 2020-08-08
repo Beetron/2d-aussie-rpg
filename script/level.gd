@@ -28,7 +28,7 @@ func spawn_boomerang(weapon, player_position, mouse_position, throw_strength):
 	add_child(new_weapon)
 	new_weapon.position = player_position
 	var throwImpulse = (mouse_position - new_weapon.global_position).normalized() * throw_strength
-	new_weapon.apply_central_impulse(throwImpulse)
+	new_weapon.velocity = throwImpulse
 	return
 
 func spawn_toad_corpse(original_position):

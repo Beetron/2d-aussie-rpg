@@ -28,12 +28,9 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
 }
 
-[node name="Boomerang" type="RigidBody2D"]
+[node name="Boomerang" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 5
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
 script = ExtResource( 2 )
 damage = 1
 
@@ -48,6 +45,7 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 9.25572, 2.42072 )
 rotation = -0.246091
+scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -61,5 +59,4 @@ autostart = true
 [node name="CollisionTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
-[connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
 [connection signal="timeout" from="CollisionTimer" to="." method="_on_CollisionTimer_timeout"]

@@ -14,7 +14,7 @@ export var friction = 0.95
 
 export var current_weapon = Weapon
 export var boomerang_attack_speed = 0.2
-export var boomerang_throw_strength = 500
+export var boomerang_throw_strength = 600
 export var throw_strength = 0
 
 export var hp : int
