@@ -8,10 +8,12 @@ const Coins = preload("res://scene/Coins.tscn")
 const Spikes = preload("res://scene/Spikes.tscn")
 
 signal end_of_level_reached
+signal player_hp_changed(amount)
 
 
 func _ready():
 	self.connect("end_of_level_reached", get_parent(), "load_next_level")
+	self.connect("player_hp_changed", get_parent(), "update_hp_bar")
 	return
 
 #func _process(_delta):
@@ -56,4 +58,8 @@ func spawn_lizard_spikes(lizard_position, lizard_rotation, lizard_attack):
 
 func end_of_level_reached():
 	emit_signal("end_of_level_reached")
+	return
+
+func player_hp_changed(amount):
+	emit_signal("player_hp_changed", amount)
 	return

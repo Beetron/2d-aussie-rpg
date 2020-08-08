@@ -50,3 +50,11 @@ func unpause():
 	get_tree().paused = false
 	pause_active = false
 	return
+
+func update_hp_bar(amount):
+	var hpbar = get_node("GameUI/PlayerUI/HealthBar")
+	var hp_percent = get_node("GameUI/PlayerUI/HealthBar/HealthPercent")
+	hpbar.value += amount
+	var hp_text = round(100 * (hpbar.value / hpbar.max_value))
+	hp_percent.text = hp_text as String + "%" 
+	return

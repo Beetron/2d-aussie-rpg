@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/aussiedude.png-0fb2e27f4c16d3b5822ab9da318baaff.stex"
+path="res://.import/hpbar.png-6eee804e8e053f1558e4aec94d744237.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aussiedude.png"
-dest_files=[ "res://.import/aussiedude.png-0fb2e27f4c16d3b5822ab9da318baaff.stex" ]
+source_file="res://img/hpbar.png"
+dest_files=[ "res://.import/hpbar.png-6eee804e8e053f1558e4aec94d744237.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

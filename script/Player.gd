@@ -5,6 +5,7 @@ enum Weapon {BOOMERANG, MAGICBOOMERANG}
 const Boomerang = preload("res://scene/Boomerang.tscn")
 
 signal weapon_thrown(weapon, player_position, mouse_position, throw_strength)
+signal player_hp_changed(amount)
 
 export var max_speed = 300
 export var acceleration_magnitude = 2500
@@ -29,6 +30,7 @@ var boomerang_thrown = false
 func _ready():
 	equip_weapon(Weapon.BOOMERANG)
 	self.connect("weapon_thrown", get_parent(), "spawn_boomerang")
+	self.connect("player_hp_changed", get_parent(), "player_hp_changed")
 	$AnimationTree.active = true
 	return
 
@@ -74,7 +76,7 @@ func handle_movement(delta):
 	velocity += acceleration * delta #Apply acceleration
 	velocity = velocity * friction #Apply friction
 
-	#Avoid diagionals being faster	
+	#Avoid diagonals being faster	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * clamp(velocity.length(), -max_speed, max_speed)
 	return
@@ -110,14 +112,13 @@ func boomerang_returned():
 func take_damage(hit_amount):
 	if($DamageImmunity.is_stopped()):
 		hp = hp - hit_amount
-		print(hp)
+		emit_signal("player_hp_changed", -hit_amount)
 		if(hp <= 0):
 			#GameOver
 			return
 			
 		$DamageImmunity.start()
 		$Sprite.modulate = Color(3, 0, 0, 1)
-		#Play hit animation
 	return
 
 
