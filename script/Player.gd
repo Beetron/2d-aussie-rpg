@@ -1,8 +1,13 @@
 extends KinematicBody2D
 
-enum Weapon {BOOMERANG, MAGICBOOMERANG}
+enum Weapon {BOOMERANG, KNIFE}
 
 const Boomerang = preload("res://scene/Boomerang.tscn")
+
+const TOP_RIGHT_CNR = -PI/4
+const TOP_LEFT_CNR = -(3*PI)/4
+const BOTTOM_RIGHT_CNR = PI/4
+const BOTTOM_LEFT_CNR = (3*PI)/4
 
 signal weapon_thrown(weapon, player_position, mouse_position, throw_strength)
 signal player_hp_changed(amount)
@@ -17,18 +22,22 @@ export var boomerang_attack_speed = 0.2
 export var boomerang_throw_strength = 600
 export var throw_strength = 0
 
+export var knife_attack_speed = 0.4
+export var knife_damage = 2
+
 export var hp : int
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 var last_direction = "Down"
-
+var attacking = false
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
 var boomerang_thrown = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	equip_weapon(Weapon.BOOMERANG)
+	#equip_weapon(Weapon.BOOMERANG)
+	equip_weapon(Weapon.KNIFE)
 	self.connect("weapon_thrown", get_parent(), "spawn_boomerang")
 	self.connect("player_hp_changed", get_parent(), "player_hp_changed")
 	$AnimationTree.active = true
@@ -36,73 +45,104 @@ func _ready():
 
 func _process(delta):
 	handle_movement(delta)
+	update()
 	return
 	
 func handle_movement(delta):
 	var acceleration = Vector2.ZERO
-	if Input.is_action_pressed("ui_right"):
-		acceleration.x += 1
-	if Input.is_action_pressed("ui_left"):
-		acceleration.x -= 1
-	if Input.is_action_pressed("ui_down"):
-		acceleration.y += 1
-	if Input.is_action_pressed("ui_up"):
-		acceleration.y -= 1
-	if !(Input.is_action_pressed("ui_left") or
-		   Input.is_action_pressed("ui_right") or
-		   Input.is_action_pressed("ui_down") or
-		   Input.is_action_pressed("ui_up")):
-		velocity = velocity * stop_friction #Apply extra friction to slow to a stop with no actions
-		state_machine.travel("Idle"+last_direction)
+	if attacking == true:
+		velocity = Vector2.ZERO
+	else:
+		if Input.is_action_pressed("ui_right"):
+			acceleration.x += 1
+		if Input.is_action_pressed("ui_left"):
+			acceleration.x -= 1
+		if Input.is_action_pressed("ui_down"):
+			acceleration.y += 1
+		if Input.is_action_pressed("ui_up"):
+			acceleration.y -= 1
+		if !(Input.is_action_pressed("ui_left") or
+			   Input.is_action_pressed("ui_right") or
+			   Input.is_action_pressed("ui_down") or
+			   Input.is_action_pressed("ui_up")):
+			velocity = velocity * stop_friction #Apply extra friction to slow to a stop with no actions
+			state_machine.travel("Idle"+last_direction)
 			
-	if acceleration.x != 0:
-		if acceleration.x > 0:
-			state_machine.travel("Right")
-			last_direction = "Right"
-		else:
-			state_machine.travel("Left")
-			last_direction = "Left"
-	elif acceleration.y != 0:
-		if acceleration.y > 0:
-			state_machine.travel("Down")
-			last_direction = "Down"
-		else:
-			state_machine.travel("Up")
-			last_direction = "Up"
+		if acceleration.x != 0:
+			if acceleration.x > 0:
+				state_machine.travel("Right")
+				last_direction = "Right"
+			else:
+				state_machine.travel("Left")
+				last_direction = "Left"
+		elif acceleration.y != 0:
+			if acceleration.y > 0:
+				state_machine.travel("Down")
+				last_direction = "Down"
+			else:
+				state_machine.travel("Up")
+				last_direction = "Up"
 	
-	if acceleration.length() > 0:
-		acceleration = acceleration.normalized() * acceleration_magnitude
+		if acceleration.length() > 0:
+			acceleration = acceleration.normalized() * acceleration_magnitude
+		
+		velocity += acceleration * delta #Apply acceleration
+		velocity = velocity * friction #Apply friction
 	
-	velocity += acceleration * delta #Apply acceleration
-	velocity = velocity * friction #Apply friction
-
-	#Avoid diagonals being faster	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * clamp(velocity.length(), -max_speed, max_speed)
+		#Avoid diagonals being faster	
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * clamp(velocity.length(), -max_speed, max_speed)
 	return
 	
-func attack(_event):
-	if($AttackTimer.is_stopped()):
-		$AttackTimer.start()
-		if(!boomerang_thrown):
-			emit_signal("weapon_thrown", current_weapon, position, get_global_mouse_position(), throw_strength)
-			boomerang_thrown = true
+func throw_boomerang(_event):
+	if(!boomerang_thrown):
+		emit_signal("weapon_thrown", Boomerang, position, get_global_mouse_position(), throw_strength)
+		boomerang_thrown = true
+	
+func knife_strike(_event):
+	#Attack in the direction of the mouse, cut up into 4 quadrants, also sets the last faced direction
+	var angle = (get_global_mouse_position() - global_position).angle()
+	if angle >= TOP_LEFT_CNR and angle < TOP_RIGHT_CNR:
+		last_direction = "Up"
+	elif angle >= TOP_RIGHT_CNR and angle < BOTTOM_RIGHT_CNR:
+		last_direction = "Right"
+	elif angle >= BOTTOM_RIGHT_CNR and angle < BOTTOM_LEFT_CNR:
+		last_direction = "Down"
+	else:
+		last_direction = "Left"
+	state_machine.travel("Attack"+last_direction)
+	return
 	
 func _input(event):
 	if event.is_action_pressed("game_attack"):
-		attack(event)
+		if($AttackTimer.is_stopped()):
+			$AttackTimer.start()
+			attacking = true
+			if(current_weapon == Weapon.BOOMERANG):
+				throw_boomerang(event)
+			elif(current_weapon == Weapon.KNIFE):
+				knife_strike(event)
 	return
 	
 func _physics_process(_delta):
 	move_and_slide(velocity)
+	if attacking == true:
+		for i in $KnifeHitbox.get_overlapping_bodies():
+			if i.is_in_group("enemies"):
+				i.take_damage(knife_damage)
+			elif i.is_in_group("breakable"):
+				i.break_apart()
 	return
 
 func equip_weapon(new_weapon):
 	match(new_weapon):
 		Weapon.BOOMERANG:
-			current_weapon = Boomerang
+			current_weapon = Weapon.BOOMERANG
 			$AttackTimer.wait_time = boomerang_attack_speed
 			throw_strength = boomerang_throw_strength
+		Weapon.KNIFE:
+			current_weapon = Weapon.KNIFE
+			$AttackTimer.wait_time = knife_attack_speed
 	return
 
 func boomerang_returned():
@@ -124,4 +164,9 @@ func take_damage(hit_amount):
 
 func _on_DamageImmunity_timeout():
 	$Sprite.modulate = Color(1, 1, 1, 1)
+	return
+
+
+func _on_AttackTimer_timeout():
+	attacking = false
 	return
