@@ -3,6 +3,7 @@ extends Node
 var current_level
 var level_list = []
 var pause_active = false
+var coins : int
 
 func _ready():
 	init_level_list()
@@ -61,5 +62,20 @@ func update_hp_bar(amount):
 	
 func update_coin_display(amount):
 	var coins_display = get_node("GameUI/PlayerUI/Cash")
-	coins_display.text = "$" + amount as String
+	coins += amount
+	coins_display.text = "$" + coins as String
+	return
+
+func update_weapon_display(weapon):
+	var weapon_display = get_node("GameUI/PlayerUI/WeaponDisplay/Weapon")
+	match(weapon):
+		"Boomerang":
+			#Bad magic numbers to realign images how I like them
+			weapon_display.texture = load("res://img/boomerang.png")
+			weapon_display.rect_position = Vector2(16, 15.561)
+			weapon_display.rect_rotation = 0
+		"Knife":
+			weapon_display.texture = load("res://img/knifeicon.png")
+			weapon_display.rect_position = Vector2(12.683, 41.434)
+			weapon_display.rect_rotation = -40.3
 	return

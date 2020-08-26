@@ -4,7 +4,7 @@
 [ext_resource path="res://img/hpbarbackground.png" type="Texture" id=2]
 [ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://img/weaponicon.png" type="Texture" id=4]
-[ext_resource path="res://img/boomerang.png" type="Texture" id=5]
+[ext_resource path="res://img/knifeicon.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 2
@@ -89,10 +89,11 @@ anchor_left = 0.5
 anchor_top = 0.412
 anchor_right = 0.5
 anchor_bottom = 0.412
-margin_left = -16.0
-margin_top = -15.7512
-margin_right = 16.0
-margin_bottom = 16.2488
+margin_left = -19.3171
+margin_top = 10.1222
+margin_right = 23.6829
+margin_bottom = 42.1222
+rect_rotation = -40.3
 texture = ExtResource( 5 )
 stretch_mode = 3
 __meta__ = {

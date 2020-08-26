@@ -11,6 +11,7 @@ const BOTTOM_LEFT_CNR = (3*PI)/4
 
 signal weapon_thrown(weapon, player_position, mouse_position, throw_strength)
 signal player_hp_changed(amount)
+signal weapon_equipped(weapon)
 
 export var max_speed = 300
 export var acceleration_magnitude = 2500
@@ -36,11 +37,12 @@ var boomerang_thrown = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#equip_weapon(Weapon.BOOMERANG)
-	equip_weapon(Weapon.KNIFE)
 	self.connect("weapon_thrown", get_parent(), "spawn_boomerang")
 	self.connect("player_hp_changed", get_parent(), "player_hp_changed")
+	self.connect("weapon_equipped", get_parent(), "weapon_equipped")
 	$AnimationTree.active = true
+	
+	equip_weapon("Knife")
 	return
 
 func _process(delta):
@@ -136,13 +138,15 @@ func _physics_process(_delta):
 
 func equip_weapon(new_weapon):
 	match(new_weapon):
-		Weapon.BOOMERANG:
+		"Boomerang":
 			current_weapon = Weapon.BOOMERANG
 			$AttackTimer.wait_time = boomerang_attack_speed
 			throw_strength = boomerang_throw_strength
-		Weapon.KNIFE:
+			emit_signal("weapon_equipped", "Boomerang")
+		"Knife":
 			current_weapon = Weapon.KNIFE
 			$AttackTimer.wait_time = knife_attack_speed
+			emit_signal("weapon_equipped", "Knife")
 	return
 
 func boomerang_returned():

@@ -22,49 +22,41 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.9752, 15.7779 )
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "AttackDown"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "AttackLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=39]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "AttackRight"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "AttackUp"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Down"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "IdleUp"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Left"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Right"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "Up"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
@@ -98,71 +90,79 @@ animation = "Up"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=30]
-states/AttackDown/node = SubResource( 37 )
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/AttackDown/node = SubResource( 2 )
 states/AttackDown/position = Vector2( 438, 462 )
-states/AttackLeft/node = SubResource( 38 )
+states/AttackLeft/node = SubResource( 3 )
 states/AttackLeft/position = Vector2( -92, 160 )
-states/AttackRight/node = SubResource( 39 )
+states/AttackRight/node = SubResource( 4 )
 states/AttackRight/position = Vector2( 1000, 180 )
-states/AttackUp/node = SubResource( 34 )
+states/AttackUp/node = SubResource( 5 )
 states/AttackUp/position = Vector2( 449, -146 )
-states/Down/node = SubResource( 2 )
+states/Down/node = SubResource( 6 )
 states/Down/position = Vector2( 437, 246 )
-states/IdleDown/node = SubResource( 3 )
+states/IdleDown/node = SubResource( 7 )
 states/IdleDown/position = Vector2( 437, 359 )
-states/IdleLeft/node = SubResource( 4 )
+states/IdleLeft/node = SubResource( 8 )
 states/IdleLeft/position = Vector2( 134, 158 )
-states/IdleRight/node = SubResource( 5 )
+states/IdleRight/node = SubResource( 9 )
 states/IdleRight/position = Vector2( 785, 158 )
-states/IdleUp/node = SubResource( 6 )
+states/IdleUp/node = SubResource( 10 )
 states/IdleUp/position = Vector2( 449, -42 )
-states/Left/node = SubResource( 7 )
+states/Left/node = SubResource( 11 )
 states/Left/position = Vector2( 322, 160 )
-states/Right/node = SubResource( 8 )
+states/Right/node = SubResource( 12 )
 states/Right/position = Vector2( 575, 155 )
-states/Up/node = SubResource( 9 )
+states/Up/node = SubResource( 13 )
 states/Up/position = Vector2( 437, 72 )
-transitions = [ "Up", "Down", SubResource( 10 ), "Down", "Up", SubResource( 11 ), "Right", "Down", SubResource( 12 ), "Down", "Right", SubResource( 13 ), "Right", "Up", SubResource( 14 ), "Up", "Right", SubResource( 15 ), "Up", "Left", SubResource( 16 ), "Left", "Up", SubResource( 17 ), "Left", "Down", SubResource( 18 ), "Left", "Right", SubResource( 19 ), "Right", "Left", SubResource( 20 ), "Down", "Left", SubResource( 21 ), "Down", "IdleDown", SubResource( 22 ), "IdleDown", "Down", SubResource( 23 ), "Left", "IdleLeft", SubResource( 24 ), "IdleLeft", "Left", SubResource( 25 ), "IdleUp", "Up", SubResource( 26 ), "Up", "IdleUp", SubResource( 27 ), "IdleRight", "Right", SubResource( 28 ), "Right", "IdleRight", SubResource( 29 ), "IdleUp", "AttackUp", SubResource( 35 ), "AttackUp", "IdleUp", SubResource( 36 ), "IdleLeft", "AttackLeft", SubResource( 40 ), "IdleRight", "AttackRight", SubResource( 41 ), "IdleDown", "AttackDown", SubResource( 42 ), "AttackLeft", "IdleLeft", SubResource( 43 ), "AttackRight", "IdleRight", SubResource( 44 ), "AttackDown", "IdleDown", SubResource( 45 ) ]
+transitions = [ "Up", "Down", SubResource( 14 ), "Down", "Up", SubResource( 15 ), "Right", "Down", SubResource( 16 ), "Down", "Right", SubResource( 17 ), "Right", "Up", SubResource( 18 ), "Up", "Right", SubResource( 19 ), "Up", "Left", SubResource( 20 ), "Left", "Up", SubResource( 21 ), "Left", "Down", SubResource( 22 ), "Left", "Right", SubResource( 23 ), "Right", "Left", SubResource( 24 ), "Down", "Left", SubResource( 25 ), "Down", "IdleDown", SubResource( 26 ), "IdleDown", "Down", SubResource( 27 ), "Left", "IdleLeft", SubResource( 28 ), "IdleLeft", "Left", SubResource( 29 ), "IdleUp", "Up", SubResource( 30 ), "Up", "IdleUp", SubResource( 31 ), "IdleRight", "Right", SubResource( 32 ), "Right", "IdleRight", SubResource( 33 ), "IdleUp", "AttackUp", SubResource( 34 ), "AttackUp", "IdleUp", SubResource( 35 ), "IdleLeft", "AttackLeft", SubResource( 36 ), "IdleRight", "AttackRight", SubResource( 37 ), "IdleDown", "AttackDown", SubResource( 38 ), "AttackLeft", "IdleLeft", SubResource( 39 ), "AttackRight", "IdleRight", SubResource( 40 ), "AttackDown", "IdleDown", SubResource( 41 ) ]
 start_node = "IdleDown"
 graph_offset = Vector2( -180, 10 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=43]
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=44]
 extents = Vector2( 6.7874, 19.2672 )
 
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 6.14494, 23.2916 )
 
-[sub_resource type="RectangleShape2D" id=47]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 26.5358, 6.12041 )
 
-[sub_resource type="RectangleShape2D" id=48]
+[sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 26.5358, 7.1936 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -221,9 +221,9 @@ anims/Right = ExtResource( 4 )
 anims/Up = ExtResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 42 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 43 )
 
 [node name="KnifeHitbox" type="Area2D" parent="."]
 gravity = 0.0
@@ -232,22 +232,22 @@ collision_mask = 20
 
 [node name="Up" type="CollisionShape2D" parent="KnifeHitbox"]
 position = Vector2( 3.70231, -30.8866 )
-shape = SubResource( 32 )
+shape = SubResource( 44 )
 disabled = true
 
 [node name="Down" type="CollisionShape2D" parent="KnifeHitbox"]
 position = Vector2( -4.72207, 27.0446 )
-shape = SubResource( 46 )
+shape = SubResource( 45 )
 disabled = true
 
 [node name="Left" type="CollisionShape2D" parent="KnifeHitbox"]
 position = Vector2( -23.3957, 2.79032 )
-shape = SubResource( 47 )
+shape = SubResource( 46 )
 disabled = true
 
 [node name="Right" type="CollisionShape2D" parent="KnifeHitbox"]
 position = Vector2( 22.7518, 2.79032 )
-shape = SubResource( 48 )
+shape = SubResource( 47 )
 disabled = true
 
 [node name="AttackSpriteUp" type="Sprite" parent="."]
