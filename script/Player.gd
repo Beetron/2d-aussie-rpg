@@ -34,6 +34,7 @@ var attacking = false
 #var screen_size # Size of the game window.
 var velocity = Vector2.ZERO
 var boomerang_thrown = false
+var boomerang_carried = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -124,6 +125,11 @@ func _input(event):
 				throw_boomerang(event)
 			elif(current_weapon == Weapon.KNIFE):
 				knife_strike(event)
+	elif event.is_action_pressed("weapon_swap") and boomerang_carried:
+			if(current_weapon == Weapon.BOOMERANG):
+				equip_weapon("Knife")
+			elif(current_weapon == Weapon.KNIFE):
+				equip_weapon("Boomerang")
 	return
 	
 func _physics_process(_delta):

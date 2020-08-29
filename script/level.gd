@@ -78,5 +78,6 @@ func weapon_equipped(weapon):
 
 func weapon_picked_up():
 	var player = get_node("Player")
+	player.boomerang_carried = true
 	player.equip_weapon("Boomerang")
 	return
