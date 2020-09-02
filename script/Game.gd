@@ -1,16 +1,15 @@
 extends Node
 
 var current_level
+var current_level_path
+var outside_level_path
 var level_list = []
 var pause_active = false
 var coins : int
 
 func _ready():
 	init_level_list()
-	var first_level_resource = load(level_list.pop_front())
-	var first_level = first_level_resource.instance()
-	add_child(first_level)
-	current_level = first_level
+	load_next_level()
 	return
 	
 func init_level_list():
@@ -25,13 +24,36 @@ func remove_current_level():
 	return
 	
 func load_next_level():
-	remove_current_level()
-	var next_level_resource = load(level_list.pop_front())
+	if current_level != null:
+		remove_current_level()
+	current_level_path = level_list.pop_front()
+	print(current_level_path)
+	var next_level_resource = load(current_level_path)
 	var next_level = next_level_resource.instance()
 	add_child(next_level)
 	current_level = next_level
 	return
 	
+func load_bar_scene():
+	outside_level_path = current_level_path
+	remove_current_level()
+	var bar_level_resource = load("res://scene/Bar.tscn")
+	var bar_level = bar_level_resource.instance()
+	add_child(bar_level)
+	current_level = bar_level
+	return
+	
+func load_outside_scene():
+	if outside_level_path != null:
+		remove_current_level()
+		var outside_level_resource = load(outside_level_path)
+		var outside_level = outside_level_resource.instance()
+		add_child(outside_level)
+		current_level = outside_level
+	else:
+		printerr("outside_level not found")
+	return
+
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 		if(!pause_active):

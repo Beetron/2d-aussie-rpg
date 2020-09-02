@@ -11,13 +11,14 @@ signal end_of_level_reached
 signal player_hp_changed(amount)
 signal coins_picked_up(amount)
 signal weapon_equipped(weapon)
-
+signal go_inside_bar()
 
 func _ready():
 	self.connect("end_of_level_reached", get_parent(), "load_next_level")
 	self.connect("player_hp_changed", get_parent(), "update_hp_bar")
 	self.connect("coins_picked_up", get_parent(), "update_coin_display")
 	self.connect("weapon_equipped", get_parent(), "update_weapon_display")
+	self.connect("go_inside_bar", get_parent(), "load_bar_scene")
 	return
 
 #func _process(_delta):
@@ -80,4 +81,8 @@ func weapon_picked_up():
 	var player = get_node("Player")
 	player.boomerang_carried = true
 	player.equip_weapon("Boomerang")
+	return
+
+func go_inside_bar():
+	emit_signal("go_inside_bar")
 	return

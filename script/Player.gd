@@ -12,6 +12,7 @@ const BOTTOM_LEFT_CNR = (3*PI)/4
 signal weapon_thrown(weapon, player_position, mouse_position, throw_strength)
 signal player_hp_changed(amount)
 signal weapon_equipped(weapon)
+signal interact_pressed()
 
 export var max_speed = 300
 export var acceleration_magnitude = 2500
@@ -41,6 +42,7 @@ func _ready():
 	self.connect("weapon_thrown", get_parent(), "spawn_boomerang")
 	self.connect("player_hp_changed", get_parent(), "player_hp_changed")
 	self.connect("weapon_equipped", get_parent(), "weapon_equipped")
+	self.connect("interact_pressed", get_parent(), "interact")
 	$AnimationTree.active = true
 	
 	equip_weapon("Knife")
@@ -130,6 +132,8 @@ func _input(event):
 				equip_weapon("Knife")
 			elif(current_weapon == Weapon.KNIFE):
 				equip_weapon("Boomerang")
+	elif event.is_action_pressed("interact"):
+		emit_signal("interact_pressed")
 	return
 	
 func _physics_process(_delta):
