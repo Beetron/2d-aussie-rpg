@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://script/game.gd" type="Script" id=1]
 [ext_resource path="res://scene/PauseMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/PlayerUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/DebugUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Dialogue.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node"]
 pause_mode = 2
@@ -17,3 +18,6 @@ layer = 2
 [node name="PlayerUI" parent="GameUI" instance=ExtResource( 3 )]
 
 [node name="DebugUI" parent="GameUI" instance=ExtResource( 4 )]
+
+[node name="Dialogue" parent="GameUI" instance=ExtResource( 5 )]
+visible = false

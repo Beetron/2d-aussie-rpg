@@ -101,3 +101,12 @@ func update_weapon_display(weapon):
 			weapon_display.rect_position = Vector2(12.683, 41.434)
 			weapon_display.rect_rotation = -40.3
 	return
+
+func show_dialogue_panel():
+	$GameUI/Dialogue.visible = true
+	$GameUI/Dialogue.advance_dialogue()
+	return
+	
+func hide_dialogue_panel():
+	$GameUI/Dialogue.visible = false
+	return
