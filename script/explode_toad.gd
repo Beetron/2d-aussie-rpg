@@ -23,6 +23,14 @@ func trigger_explosion():
 	$AnimatedSprite.play("Inflate")
 	return
 
+func _physics_process(_delta):
+	if(movement_frozen == false):
+		if(check_in_attack_range()):
+			move_to_player()
+		else:
+			move_randomly()
+	return
+
 func _process(_delta):
 	#Movement behaviour for players
 	if(check_in_attack_range()):

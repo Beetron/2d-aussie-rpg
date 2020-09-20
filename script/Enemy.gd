@@ -7,6 +7,7 @@ export var damage : int
 export var speed : float
 const WANDER_DISTANCE = 100.0
 const ATTACK_RANGE = 250.0
+const STRAFE_RANGE = 150.0
 var path : PoolVector2Array
 var rng = RandomNumberGenerator.new()
 var movement_frozen : bool
@@ -32,12 +33,7 @@ func died():
 	pass
 
 func _physics_process(_delta):
-	if(movement_frozen == false):
-		if(check_in_attack_range()):
-			move_to_player()
-		else:
-			move_randomly()
-	return
+	pass
 	
 func check_in_attack_range() -> bool:
 	if(player.position.distance_to(position) <= ATTACK_RANGE):
@@ -47,17 +43,26 @@ func check_in_attack_range() -> bool:
 func move_to_player():
 	path = nav.get_simple_path(position, player.position)
 	
-	var distance_to_move = speed
-	while distance_to_move > 0 and path.size() > 0:
-		var distance_to_next_point = position.distance_to(path[0])
-		move_and_slide(position.direction_to(path[0]) * distance_to_move)
-		if(distance_to_move > distance_to_next_point):
-			path.remove(0)
-		distance_to_move -= distance_to_next_point
+	var distance = position.distance_to(player.position)
+	if(distance > 1):
+		move_along_path(speed)
+	return
+	
+func strafe_around_player():
+	#Path to a certain distance near the player
+	var spacer = position.direction_to(player.position) * STRAFE_RANGE
+	path = nav.get_simple_path(position, player.position - spacer)
+	var distance = position.distance_to(player.position - spacer)
+	if(distance > 1):
+		move_along_path(speed)
 	return
 
 func move_randomly():
 	var distance_to_move = speed / 4.0
+	move_along_path(distance_to_move)
+	return
+	
+func move_along_path(distance_to_move):
 	while distance_to_move > 0 and path.size() > 0:
 		var distance_to_next_point = position.distance_to(path[0])
 		move_and_slide(position.direction_to(path[0]) * distance_to_move)

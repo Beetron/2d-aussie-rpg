@@ -6,6 +6,7 @@ const ToadCorpse = preload("res://scene/ToadCorpse.tscn")
 const ToadExplosionParticle = preload("res://scene/ExplosionParticle.tscn")
 const Coins = preload("res://scene/Coins.tscn")
 const Spikes = preload("res://scene/Spikes.tscn")
+const Bottle = preload("res://scene/Bottle.tscn")
 
 signal end_of_level_reached
 signal player_hp_changed(amount)
@@ -59,6 +60,14 @@ func spawn_lizard_spikes(lizard_position, lizard_rotation, lizard_attack):
 	spikes.rotation = lizard_rotation
 	spikes.damage = lizard_attack
 	add_child(spikes)
+	return
+	
+func spawn_thrown_bottle(kanga_position, kanga_rotation, kanga_attack):
+	var bottle = Bottle.instance()
+	bottle.position = kanga_position
+	bottle.rotation = kanga_rotation
+	bottle.damage = kanga_attack
+	add_child(bottle)
 	return
 
 func end_of_level_reached():
