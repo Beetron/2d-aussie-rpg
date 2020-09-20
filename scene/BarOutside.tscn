@@ -2,7 +2,8 @@
 
 [ext_resource path="res://img/pubroof.png" type="Texture" id=1]
 [ext_resource path="res://img/pubbase.png" type="Texture" id=2]
-[ext_resource path="res://script/BarOutside.gd" type="Script" id=3]
+[ext_resource path="res://script/bar_outside.gd" type="Script" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18.9656, 19.7237 )
