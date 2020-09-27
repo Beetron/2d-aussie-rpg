@@ -58,8 +58,8 @@ func strafe_around_player():
 	return
 
 func move_randomly():
-	var distance_to_move = speed / 4.0
-	move_along_path(distance_to_move)
+	#var distance_to_move = speed / 4.0
+	#move_along_path(distance_to_move)
 	return
 	
 func move_along_path(distance_to_move):

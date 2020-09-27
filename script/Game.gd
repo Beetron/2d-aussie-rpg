@@ -15,7 +15,6 @@ func _ready():
 func init_level_list():
 	level_list.push_back("res://scene/Level 1.tscn")
 	level_list.push_back("res://scene/Level 2.tscn")
-	level_list.push_back("res://scene/BossLevel.tscn")
 	return
 
 func remove_current_level():
