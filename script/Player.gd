@@ -165,6 +165,7 @@ func boomerang_returned():
 	
 func take_damage(hit_amount):
 	if($DamageImmunity.is_stopped()):
+		$Camera2D.add_trauma((hit_amount as float / 5))
 		hp = hp - hit_amount
 		emit_signal("player_hp_changed", -hit_amount)
 		if(hp <= 0):
@@ -174,7 +175,6 @@ func take_damage(hit_amount):
 		$DamageImmunity.start()
 		$Sprite.modulate = Color(3, 0, 0, 1)
 	return
-
 
 func _on_DamageImmunity_timeout():
 	$Sprite.modulate = Color(1, 1, 1, 1)
