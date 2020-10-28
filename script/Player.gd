@@ -11,6 +11,7 @@ const BOTTOM_LEFT_CNR = (3*PI)/4
 
 signal weapon_thrown(weapon, player_position, mouse_position, throw_strength)
 signal player_hp_changed(amount)
+signal player_died()
 signal weapon_equipped(weapon)
 signal interact_pressed()
 
@@ -28,6 +29,7 @@ export var knife_attack_speed = 0.4
 export var knife_damage = 2
 
 export var hp : int
+var original_HP : int
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 var last_direction = "Down"
@@ -37,18 +39,26 @@ var velocity = Vector2.ZERO
 var boomerang_thrown = false
 var boomerang_carried = false
 
+var saved_position : Vector2
+var position_reset = false
+var saved_cash : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	original_HP = hp
 	self.connect("weapon_thrown", get_parent(), "spawn_boomerang")
 	self.connect("player_hp_changed", get_parent(), "player_hp_changed")
 	self.connect("weapon_equipped", get_parent(), "weapon_equipped")
 	self.connect("interact_pressed", get_parent(), "interact")
+	self.connect("player_died", get_parent(), "return_to_checkpoint")
 	$AnimationTree.active = true
 	
 	equip_weapon("Knife")
 	return
 
 func _process(delta):
+	if Input.is_key_pressed(16777235):
+		take_damage(99999)
 	handle_movement(delta)
 	update()
 	return
@@ -137,7 +147,14 @@ func _input(event):
 	return
 	
 func _physics_process(_delta):
-	move_and_slide(velocity)
+	if(position_reset):
+		position = saved_position
+		position_reset = false
+		$Camera2D.align()
+		last_direction = "Down"
+	else:
+		move_and_slide(velocity)
+		
 	if attacking == true:
 		for i in $KnifeHitbox.get_overlapping_bodies():
 			if i.is_in_group("enemies"):
@@ -163,17 +180,24 @@ func boomerang_returned():
 	boomerang_thrown = false
 	return
 	
+func restore_hp():
+	hp = original_HP
+	emit_signal("player_hp_changed", 3)
+	return	
+
 func take_damage(hit_amount):
 	if($DamageImmunity.is_stopped()):
-		$Camera2D.add_trauma((hit_amount as float / 5))
 		hp = hp - hit_amount
 		emit_signal("player_hp_changed", -hit_amount)
+		$DamageImmunity.start()
 		if(hp <= 0):
-			#GameOver
+			emit_signal("player_died")
+			restore_hp()
+			restore_position()
 			return
 			
-		$DamageImmunity.start()
 		$Sprite.modulate = Color(3, 0, 0, 1)
+		$Camera2D.add_trauma((hit_amount as float / 5))
 	return
 
 func _on_DamageImmunity_timeout():
@@ -183,4 +207,12 @@ func _on_DamageImmunity_timeout():
 
 func _on_AttackTimer_timeout():
 	attacking = false
+	return
+
+func save_position(checkpoint_position):
+	saved_position = checkpoint_position
+	return
+
+func restore_position():
+	position_reset = true
 	return

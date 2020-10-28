@@ -28,3 +28,12 @@ func _on_Coins_body_entered(body):
 	if(body.is_in_group("player")):
 		coins_picked_up()
 	return
+
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		}
+	return save_dict

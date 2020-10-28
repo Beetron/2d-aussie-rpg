@@ -21,3 +21,23 @@ layer = 2
 
 [node name="Dialogue" parent="GameUI" instance=ExtResource( 5 )]
 visible = false
+
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="TransitionGUI" type="Control" parent="Transition"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition/TransitionGUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TransitionTimer" type="Timer" parent="Transition"]
+wait_time = 0.35
+[connection signal="timeout" from="Transition/TransitionTimer" to="." method="_on_TransitionTimer_timeout"]

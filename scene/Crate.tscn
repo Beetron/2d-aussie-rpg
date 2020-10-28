@@ -31,6 +31,7 @@ anim_offset_random = 1.0
 
 [node name="Crate" type="RigidBody2D" groups=[
 "breakable",
+"persist",
 ]]
 z_index = 1
 collision_layer = 16

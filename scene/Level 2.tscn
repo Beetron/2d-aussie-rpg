@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/ProtoLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/WeaponPickup.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scene/Explodetoad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/BarOutside.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scene/Crate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/Checkpoint.tscn" type="PackedScene" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1047, -114, 1126, -41, 1127, 40, 1057, 112, 674, 111, 591, 38, 591, -27, 665, -108, 1052, 177, 1124, 245, 1124, 312, 1044, 397, 666, 398, 629, 362, 628, 221, 675, 178, 1226, 264, 1305, 175, 1697, 178, 1735, 219, 1736, 357, 1680, 398, 1304, 400, 1228, 305, 1191, -17, 1273, -103, 1655, -109, 1752, -19, 1745, 42, 1674, 105, 1271, 102, 1198, 45, 1158, -272, 1064, -179, 663, -242, 604, -292, 664, -359, 905, -368, 1056, -363, 1158, -303, 663, -180, 664, -393, 893, -397, 1402, -359, 1443, -401, 1704, -393, 1786, -276, 1693, -179, 1403, -187, 1361, -237, 1286, -359, 1225, -270, 1226, -304, 1884.19, -108.256, 2806.56, -106.921, 2926.7, -42.8487, 2929.37, 38.5766, 2806.56, 110.658, 1889.53, 110.658, 1806.77, 22.5585, 1808.1, -10.8125 )
@@ -163,3 +164,17 @@ position = Vector2( 1704.8, -289.084 )
 
 [node name="Lizard3" parent="." index="49" instance=ExtResource( 3 )]
 position = Vector2( 1681.8, -236.084 )
+
+[node name="Checkpoint" parent="." index="50" instance=ExtResource( 8 )]
+
+[node name="Checkpoint2" parent="." index="51" instance=ExtResource( 8 )]
+position = Vector2( 560, 0 )
+
+[node name="Checkpoint6" parent="." index="52" instance=ExtResource( 8 )]
+position = Vector2( 1168, 0 )
+
+[node name="Checkpoint10" parent="." index="53" instance=ExtResource( 8 )]
+position = Vector2( 1776, 0 )
+
+[node name="Checkpoint11" parent="." index="54" instance=ExtResource( 8 )]
+position = Vector2( 2992, 0 )

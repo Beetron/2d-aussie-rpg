@@ -82,7 +82,9 @@ extents = Vector2( 16.1308, 15.7007 )
 [sub_resource type="CircleShape2D" id=16]
 radius = 33.2323
 
-[node name="Explodetoad" instance=ExtResource( 1 )]
+[node name="Explodetoad" groups=[
+"persist",
+] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 2
 damage = 1

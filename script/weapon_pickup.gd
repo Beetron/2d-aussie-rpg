@@ -11,3 +11,12 @@ func _on_WeaponPickup_body_entered(body):
 		emit_signal("weapon_picked_up")
 		call_deferred("queue_free")
 	return
+
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		}
+	return save_dict

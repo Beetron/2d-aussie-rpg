@@ -27,7 +27,9 @@ hue_variation = 1.0
 hue_variation_random = 1.0
 hue_variation_curve = SubResource( 3 )
 
-[node name="WeaponPickup" type="Area2D"]
+[node name="WeaponPickup" type="Area2D" groups=[
+"persist",
+]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

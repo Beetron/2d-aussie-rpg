@@ -32,3 +32,13 @@ func _process(delta):
 func _on_RemoveTimer_timeout():
 	call_deferred("queue_free")
 	return
+
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"hp" : hp
+		}
+	return save_dict

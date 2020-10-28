@@ -18,7 +18,9 @@ initial_velocity = 80.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
-[node name="Coins" type="Area2D"]
+[node name="Coins" type="Area2D" groups=[
+"persist",
+]]
 collision_layer = 32
 script = ExtResource( 2 )
 

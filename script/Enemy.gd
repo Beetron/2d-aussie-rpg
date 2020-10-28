@@ -36,7 +36,7 @@ func _physics_process(_delta):
 	pass
 	
 func check_in_attack_range() -> bool:
-	if(player.position.distance_to(position) <= ATTACK_RANGE):
+	if(player != null and player.position.distance_to(position) <= ATTACK_RANGE):
 		return true
 	return false
 	
@@ -85,3 +85,13 @@ func _on_NewRandomDirection_timeout():
 	$NewRandomDirection.wait_time = float(rng.randi_range(4,8))
 	$NewRandomDirection.start()
 	return
+
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"hp" : hp
+		}
+	return save_dict

@@ -43,7 +43,7 @@ func _physics_process(_delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if $CollisionTimer.is_stopped() and collision.collider == player:
-			player.take_damage(damage)
+			player.call_deferred("take_damage", damage)
 			$CollisionTimer.start()
 	return
 	

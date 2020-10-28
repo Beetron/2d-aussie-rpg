@@ -13,13 +13,19 @@ signal player_hp_changed(amount)
 signal coins_picked_up(amount)
 signal weapon_equipped(weapon)
 signal go_inside_bar()
+signal activate_checkpoint(checkpoint_position)
+signal return_to_checkpoint()
+
+var saved_player_pos : Vector2
 
 func _ready():
 	self.connect("end_of_level_reached", get_parent(), "load_next_level")
 	self.connect("player_hp_changed", get_parent(), "update_hp_bar")
-	self.connect("coins_picked_up", get_parent(), "update_coin_display")
+	self.connect("coins_picked_up", get_parent(), "add_coins")
 	self.connect("weapon_equipped", get_parent(), "update_weapon_display")
 	self.connect("go_inside_bar", get_parent(), "load_bar_scene")
+	self.connect("activate_checkpoint", get_parent(), "save_checkpoint")
+	self.connect("return_to_checkpoint", get_parent(), "restore_checkpoint")
 	return
 
 #func _process(_delta):
@@ -94,4 +100,12 @@ func weapon_picked_up():
 
 func go_inside_bar():
 	emit_signal("go_inside_bar")
+	return
+	
+func activate_checkpoint(checkpoint_position):
+	emit_signal("activate_checkpoint", checkpoint_position)
+	return
+
+func return_to_checkpoint():
+	emit_signal("return_to_checkpoint")
 	return

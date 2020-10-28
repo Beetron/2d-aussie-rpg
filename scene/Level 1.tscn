@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/ProtoLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/Lizard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/Crate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/LevelGate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/Explodetoad.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/Checkpoint.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 417.269, -114.208, 807.089, -112.32, 877.88, -49.0807, 876.936, 42.4751, 810.865, 113.266, 407.83, 116.097, 332.32, 41.5312, 334.208, -40.5859, 2017.14, -118.927, 2099.25, -38.6981, 2103.03, 29.2608, 2018.08, 115.153, 1632.04, 112.322, 1556.53, 39.6435, 1552.75, -33.9787, 1633.92, -116.096, 805.356, 177.575, 876.067, 246.165, 878.188, 333.139, 794.75, 401.728, 416.448, 397.486, 333.716, 334.553, 337.959, 239.801, 403.013, 174.04, 1421.47, -177.547, 1110.55, -179.328, 1008.98, -276.436, 1005.42, -369.09, 1422.36, -366.417, 1425.03, -271.091, 1426.82, -298.709, 1610.34, -273.764, 1611.23, -305.836, 2027.28, -175.765, 1646.87, -173.983, 1621.92, -222.092, 1647.76, -378.89, 2028.17, -395.817, 2089.65, -311.181, 2094.1, -237.237, 1613.42, 217.638, 1672.88, 173.276, 1973.98, 172.332, 2025.89, 207.255, 2031.56, 396.03, 1610.59, 393.198, 2238.95, -114.208, 2713.74, -120.725, 2377.7, -75.5092, 2294.63, -70.7899, 2535.32, 71.7352, 2707.85, 120.612, 2248.38, 111.378, 2453.21, 73.6229, 2535.32, -6.60641, 2456.98, -8.49416, 2376.75, 9.43947, 2293.69, 9.43947, 2170.04, 35.868, 2155.89, -33.0349, 1475.35, -37.7542, 1485.73, 38.6996, 1407.39, 117.041, 1196.91, 73.623, 1195.02, -73.6214, 1412.11, -111.376, 1021.35, 119.873, 1138.39, 73.623, 1028.9, -117.04, 1136.5, -71.7337, 945.839, -22.6523, 944.895, 39.6434 )
@@ -138,3 +139,17 @@ position = Vector2( 1979.88, 389.177 )
 
 [node name="Crate17" parent="." index="41" instance=ExtResource( 3 )]
 position = Vector2( 1646.69, 390.068 )
+
+[node name="Checkpoint" parent="." index="42" instance=ExtResource( 6 )]
+
+[node name="Checkpoint2" parent="." index="43" instance=ExtResource( 6 )]
+position = Vector2( 912, 0 )
+
+[node name="Checkpoint3" parent="." index="44" instance=ExtResource( 6 )]
+position = Vector2( 1520, 0 )
+
+[node name="Checkpoint4" parent="." index="45" instance=ExtResource( 6 )]
+position = Vector2( 2128, 0 )
+
+[node name="Checkpoint10" parent="." index="46" instance=ExtResource( 6 )]
+position = Vector2( 304, -0.109299 )
