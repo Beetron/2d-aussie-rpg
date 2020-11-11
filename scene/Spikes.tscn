@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.01199, 8.14818 )
 
-[node name="Spikes" type="Area2D"]
+[node name="Spikes" type="Area2D" groups=[
+"remove_on_load",
+]]
 position = Vector2( 0.0769444, 0 )
 gravity = 0.0
 collision_layer = 64

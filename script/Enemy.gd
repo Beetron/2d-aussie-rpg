@@ -11,12 +11,18 @@ const STRAFE_RANGE = 150.0
 var path : PoolVector2Array
 var rng = RandomNumberGenerator.new()
 var movement_frozen : bool
+var player : Node2D
 
-onready var player = get_parent().get_node("Player")
 onready var nav = get_parent().get_node("Navigation2D")
 
 func _ready():
+	get_player()
 	rng.randomize()
+	return
+
+func get_player():
+	var players = get_tree().get_nodes_in_group("player")
+	player = players.back()
 	return
 
 func take_damage(hit_amount):

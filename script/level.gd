@@ -19,7 +19,7 @@ signal return_to_checkpoint()
 var saved_player_pos : Vector2
 
 func _ready():
-	self.connect("end_of_level_reached", get_parent(), "load_next_level")
+	self.connect("end_of_level_reached", get_parent(), "load_second_level")
 	self.connect("player_hp_changed", get_parent(), "update_hp_bar")
 	self.connect("coins_picked_up", get_parent(), "add_coins")
 	self.connect("weapon_equipped", get_parent(), "update_weapon_display")
@@ -109,3 +109,6 @@ func activate_checkpoint(checkpoint_position):
 func return_to_checkpoint():
 	emit_signal("return_to_checkpoint")
 	return
+	
+func interact():
+	pass

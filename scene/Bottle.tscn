@@ -35,7 +35,9 @@ tracks/1/keys = {
 "values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
 }
 
-[node name="Bottle" type="Area2D"]
+[node name="Bottle" type="Area2D" groups=[
+"remove_on_load",
+]]
 gravity = 0.0
 collision_layer = 64
 collision_mask = 19

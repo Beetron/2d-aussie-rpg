@@ -5,10 +5,16 @@ export var damage : int
 
 var velocity : Vector2
 
-onready var player = get_parent().get_node("Player")
+var player : Node2D
 
 func _ready():
+	get_player()
 	$AnimationPlayer.play("spin")
+	return
+	
+func get_player():
+	var players = get_tree().get_nodes_in_group("player")
+	player = players.back()
 	return
 
 func _physics_process(delta):
@@ -18,7 +24,7 @@ func _physics_process(delta):
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "Player":
+		if collision.collider.is_in_group("player"):
 			collision.collider.boomerang_returned()
 			call_deferred("queue_free")
 		elif(collision.collider.is_in_group("enemies")):

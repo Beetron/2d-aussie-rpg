@@ -55,7 +55,6 @@ func _on_ExplodeTimer_timeout():
 	$AnimatedSprite.play("Explode")
 	$CollisionShape2D.set_deferred("disabled", true)
 	if($ExplosionZone.overlaps_body(player)):
-		print("player hit by explosion")
 		player.call_deferred("take_damage",damage)
 	$DeathTimer.start()
 	return

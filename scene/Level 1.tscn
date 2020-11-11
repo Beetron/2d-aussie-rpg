@@ -140,16 +140,14 @@ position = Vector2( 1979.88, 389.177 )
 [node name="Crate17" parent="." index="41" instance=ExtResource( 3 )]
 position = Vector2( 1646.69, 390.068 )
 
-[node name="Checkpoint" parent="." index="42" instance=ExtResource( 6 )]
-
-[node name="Checkpoint2" parent="." index="43" instance=ExtResource( 6 )]
+[node name="Checkpoint2" parent="." index="42" instance=ExtResource( 6 )]
 position = Vector2( 912, 0 )
 
-[node name="Checkpoint3" parent="." index="44" instance=ExtResource( 6 )]
+[node name="Checkpoint3" parent="." index="43" instance=ExtResource( 6 )]
 position = Vector2( 1520, 0 )
 
-[node name="Checkpoint4" parent="." index="45" instance=ExtResource( 6 )]
+[node name="Checkpoint4" parent="." index="44" instance=ExtResource( 6 )]
 position = Vector2( 2128, 0 )
 
-[node name="Checkpoint10" parent="." index="46" instance=ExtResource( 6 )]
+[node name="Checkpoint10" parent="." index="45" instance=ExtResource( 6 )]
 position = Vector2( 304, -0.109299 )

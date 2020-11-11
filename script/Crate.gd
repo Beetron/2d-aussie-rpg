@@ -34,11 +34,13 @@ func _on_RemoveTimer_timeout():
 	return
 
 func save():
-	var save_dict = {
-		"filename" : get_filename(),
-		"parent" : get_parent().get_path(),
-		"pos_x" : position.x,
-		"pos_y" : position.y,
-		"hp" : hp
-		}
-	return save_dict
+	if $RemoveTimer.is_stopped():
+		var save_dict = {
+			"filename" : get_filename(),
+			"parent" : get_parent().get_path(),
+			"pos_x" : position.x,
+			"pos_y" : position.y,
+			"hp" : hp
+			}
+		return save_dict
+	return null

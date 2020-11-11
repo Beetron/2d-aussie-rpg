@@ -41,7 +41,7 @@ var boomerang_carried = false
 
 var saved_position : Vector2
 var position_reset = false
-var saved_cash : int
+var coins : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,8 +57,6 @@ func _ready():
 	return
 
 func _process(delta):
-	if Input.is_key_pressed(16777235):
-		take_damage(99999)
 	handle_movement(delta)
 	update()
 	return
@@ -188,7 +186,7 @@ func restore_hp():
 func take_damage(hit_amount):
 	if($DamageImmunity.is_stopped()):
 		hp = hp - hit_amount
-		emit_signal("player_hp_changed", -hit_amount)
+		emit_signal("player_hp_changed", hp)
 		$DamageImmunity.start()
 		if(hp <= 0):
 			emit_signal("player_died")
@@ -216,3 +214,17 @@ func save_position(checkpoint_position):
 func restore_position():
 	position_reset = true
 	return
+
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"hp" : hp,
+		"saved_position_x" : saved_position.x,
+		"saved_position_y" : saved_position.y,
+		"boomerang_carried" : boomerang_carried,
+		"current_weapon" : current_weapon
+		}
+	return save_dict
