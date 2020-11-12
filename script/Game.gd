@@ -61,23 +61,17 @@ func load_second_level():
 	return
 	
 func load_bar_scene():
-	outside_level_path = current_level_path
-	remove_current_level()
+	if current_level != null:
+		remove_current_level()
+	current_level_path = "res://scene/Bar.tscn"
 	var bar_level_resource = load("res://scene/Bar.tscn")
 	var bar_level = bar_level_resource.instance()
 	add_child(bar_level)
 	current_level = bar_level
-	return
 	
-func load_outside_scene():
-	if outside_level_path != null:
-		remove_current_level()
-		var outside_level_resource = load(outside_level_path)
-		var outside_level = outside_level_resource.instance()
-		add_child(outside_level)
-		current_level = outside_level
-	else:
-		printerr("outside_level not found")
+	#Disabling saving since it's not worth trying to fix the save issues in this area
+	var save_button = get_node("PauseMenu/GUI/VSplitContainer/SaveAndQuit")
+	save_button.disabled = true
 	return
 
 func _process(_delta):
