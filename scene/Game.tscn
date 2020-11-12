@@ -18,6 +18,7 @@ layer = 2
 [node name="PlayerUI" parent="GameUI" instance=ExtResource( 3 )]
 
 [node name="DebugUI" parent="GameUI" instance=ExtResource( 4 )]
+visible = false
 
 [node name="Dialogue" parent="GameUI" instance=ExtResource( 5 )]
 visible = false

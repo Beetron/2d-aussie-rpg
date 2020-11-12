@@ -4,7 +4,7 @@ var player_dialogue = false
 
 signal left_bar
 signal started_talking
-signal stopped_talking
+signal stopped_talking(finished_all_dialogue)
 
 func _ready():
 	self.connect("left_bar", get_parent(), "load_outside_scene")
@@ -27,7 +27,7 @@ func _on_DialogueZone_body_entered(body):
 func _on_DialogueZone_body_exited(body):
 	if(body.is_in_group("player")):
 		player_dialogue = false
-		emit_signal("stopped_talking")
+		emit_signal("stopped_talking", false)
 	return
 
 func _on_BarExit_body_entered(body):

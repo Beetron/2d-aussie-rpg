@@ -53,6 +53,7 @@ func load_next_level():
 func load_second_level():
 	if current_level != null:
 		remove_current_level()
+	current_level_path = "res://scene/Level 2.tscn"
 	var level_resource = load("res://scene/Level 2.tscn")
 	var level = level_resource.instance()
 	add_child(level)
@@ -136,8 +137,17 @@ func show_dialogue_panel():
 	$GameUI/Dialogue.advance_dialogue()
 	return
 	
-func hide_dialogue_panel():
+func hide_dialogue_panel(finished_all_dialogue):
 	$GameUI/Dialogue.visible = false
+	if finished_all_dialogue:
+		$GameUI/PlayerUI.visible = false
+		if current_level != null:
+			remove_current_level()
+		var end_screen_resource = load("res://scene/End Screen.tscn")
+		var scene = end_screen_resource.instance()
+		add_child(scene)
+		print(coins / 10)
+		scene.set_beers(coins / 10)
 	return
 
 func save_checkpoint(checkpoint_position):
