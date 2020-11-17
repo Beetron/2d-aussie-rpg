@@ -1,12 +1,12 @@
 extends Control
 
 signal start_button_pressed
-signal load_button_pressed
+signal option_button_pressed
 signal continue_button_pressed
 
 func _ready():
 	self.connect("start_button_pressed", get_parent(), "load_game")
-	self.connect("load_button_pressed", get_parent(), "load_options")
+	self.connect("option_button_pressed", get_parent(), "load_options")
 	self.connect("continue_button_pressed", get_parent(), "restore_save")
 	
 	var save_game = File.new()
@@ -16,19 +16,23 @@ func _ready():
 	return
 
 func _on_Start_Game_pressed():
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
 	emit_signal("start_button_pressed")
 	return
 
 func _on_Options_pressed():
-	#emit_signal("load_options")
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
+	emit_signal("option_button_pressed")
 	return
 
 
 func _on_Continue_pressed():
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
 	emit_signal("continue_button_pressed")
 	return
 
 
 func _on_Exit_pressed():
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
 	get_tree().quit()
 	return

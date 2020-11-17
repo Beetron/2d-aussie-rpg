@@ -9,10 +9,12 @@ func _ready():
 	return
 
 func _on_Unpause_pressed():
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
 	emit_signal("unpause_button_pressed")
 	return
 
 
 func _on_SaveAndQuit_pressed():
+	get_tree().get_root().get_node("MasterScene/SoundManager/MenuButtonClick").play()
 	emit_signal("savequit_button_pressed")
 	return

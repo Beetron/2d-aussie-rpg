@@ -9,6 +9,8 @@ var skip_text = false
 #Going to just hardcode the text I want here, since I won't have that much dialogue anyway.
 #If I was to expand this, I would definitely pull the text in from file.
 var dialogue = ["G'day Larry.",
+"Some night last night eh?",
+"All that blood on you tells me you've had an interesting morning...",
 "What can I get you today?"]
 
 func _ready():
@@ -21,6 +23,7 @@ func print_dialogue( string ):
 		if !skip_text:
 			$LetterTimer.start()
 			$RichTextLabel.add_text( letter )
+			get_tree().get_root().get_node("MasterScene/SoundManager/DialogueTypewriter").play()
 			yield($LetterTimer, "timeout")
 	line_completed = true
 	index += 1
@@ -28,6 +31,7 @@ func print_dialogue( string ):
 	
 func advance_dialogue():
 	if !dialogue_finished:
+		get_tree().get_root().get_node("MasterScene/SoundManager/DialogueAdvance").play()
 		$RichTextLabel.text = ""
 		if(index < dialogue.size()):
 			if line_completed:

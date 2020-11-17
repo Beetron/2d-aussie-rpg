@@ -94,6 +94,7 @@ func weapon_equipped(weapon):
 
 func weapon_picked_up():
 	var player = get_node("Player")
+	get_tree().get_root().get_node("MasterScene/SoundManager/BoomerangPickup").play()
 	player.boomerang_carried = true
 	player.equip_weapon("Boomerang")
 	return

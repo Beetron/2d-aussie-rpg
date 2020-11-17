@@ -12,6 +12,7 @@ func _ready():
 	return
 
 func coins_picked_up():
+	get_tree().get_root().get_node("MasterScene/SoundManager/CoinPickup").play()
 	$Sparkle.emitting = true
 	emit_signal("coins_picked_up", amount)
 	$Sprite.visible = false	

@@ -39,10 +39,12 @@ func _process(delta):
 func attack():
 	var rotation = position.angle_to_point(player.position) 
 	emit_signal("bottle_thrown", position, rotation, damage)
+	get_tree().get_root().get_node("MasterScene/SoundManager/KangarooThrow").play()
 	return
 	
 func died():
 	if(dying == false):
+		get_tree().get_root().get_node("MasterScene/SoundManager/KangarooDie").play()
 		dying = true
 		speed = 0
 		$AnimatedSprite.stop()
@@ -61,4 +63,15 @@ func _on_DespawnTimer_timeout():
 func _on_BottleTimer_timeout():
 	if check_in_attack_range() and dying == false:
 		attack()
+	return
+
+func take_damage(hit_amount):
+	if($DamageImmunity.is_stopped()):
+		hp = hp - hit_amount
+		get_tree().get_root().get_node("MasterScene/SoundManager/KangarooDamage").play()
+		if(hp <= 0):
+			died()
+		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		$DamageImmunity.start()
+		movement_frozen = true
 	return

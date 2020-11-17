@@ -5,14 +5,21 @@ const MainMenu = preload("res://scene/MainMenu.tscn")
 var current_scene
 
 func _ready():
-	var menu = MainMenu.instance()
-	add_child(menu)
-	current_scene = menu
+	restore_options()
+	load_main_menu()
 	return
 	
 func remove_current_scene():
-	remove_child(current_scene)
-	current_scene.call_deferred("free")
+	if current_scene != null:
+		remove_child(current_scene)
+		current_scene.call_deferred("free")
+	return
+	
+func load_main_menu():
+	remove_current_scene()
+	var menu = MainMenu.instance()
+	add_child(menu)
+	current_scene = menu
 	return
 	
 func load_game():
@@ -146,5 +153,17 @@ func restore_save():
 
 func save_and_quit():
 	save_game()
-	get_tree().quit()
+	load_main_menu()
 	return	
+	
+func restore_options():
+	var saved_options = File.new()
+	if not saved_options.file_exists("user://larrikinquestoptions.save"):
+		return
+	saved_options.open("user://larrikinquestoptions.save", File.READ)
+	while saved_options.get_position() < saved_options.get_len():
+		var saved_sfx_volume = parse_json(saved_options.get_line())
+		var SFX_bus = AudioServer.get_bus_index("SFX")
+		AudioServer.set_bus_volume_db(SFX_bus,saved_sfx_volume)
+	saved_options.close()
+	return

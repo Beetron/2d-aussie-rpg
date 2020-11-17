@@ -9,6 +9,7 @@ func _ready():
 	return
 
 func break_apart():
+	get_tree().get_root().get_node("MasterScene/SoundManager/CrateBreak").play()
 	$LargeParticle.emitting = true
 	$MediumParticle.emitting = true
 	$SmallParticle.emitting = true

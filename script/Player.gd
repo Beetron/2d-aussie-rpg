@@ -109,10 +109,12 @@ func handle_movement(delta):
 	
 func throw_boomerang(_event):
 	if(!boomerang_thrown):
+		get_tree().get_root().get_node("MasterScene/SoundManager/ThrowBoomerang").play()
 		emit_signal("weapon_thrown", Boomerang, position, get_global_mouse_position(), throw_strength)
 		boomerang_thrown = true
 	
 func knife_strike(_event):
+	get_tree().get_root().get_node("MasterScene/SoundManager/PlayerStab").play()
 	#Attack in the direction of the mouse, cut up into 4 quadrants, also sets the last faced direction
 	var angle = (get_global_mouse_position() - global_position).angle()
 	if angle >= TOP_LEFT_CNR and angle < TOP_RIGHT_CNR:
@@ -136,6 +138,7 @@ func _input(event):
 			elif(current_weapon == Weapon.KNIFE):
 				knife_strike(event)
 	elif event.is_action_pressed("weapon_swap") and boomerang_carried:
+			get_tree().get_root().get_node("MasterScene/SoundManager/SwapWeapon").play()
 			if(current_weapon == Weapon.BOOMERANG):
 				equip_weapon("Knife")
 			elif(current_weapon == Weapon.KNIFE):
@@ -188,10 +191,11 @@ func take_damage(hit_amount):
 		hp = hp - hit_amount
 		emit_signal("player_hp_changed", hp)
 		$DamageImmunity.start()
+		get_tree().get_root().get_node("MasterScene/SoundManager/PlayerDamage").play()
 		if(hp <= 0):
+			get_tree().get_root().get_node("MasterScene/SoundManager/PlayerDie").play()
 			emit_signal("player_died")
 			restore_hp()
-			restore_position()
 			return
 			
 		$Sprite.modulate = Color(3, 0, 0, 1)

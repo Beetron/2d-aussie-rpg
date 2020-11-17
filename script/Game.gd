@@ -140,7 +140,6 @@ func hide_dialogue_panel(finished_all_dialogue):
 		var end_screen_resource = load("res://scene/End Screen.tscn")
 		var scene = end_screen_resource.instance()
 		add_child(scene)
-		print(coins / 10)
 		scene.set_beers(coins / 10)
 	return
 
@@ -168,6 +167,8 @@ func save_checkpoint(checkpoint_position):
 	return
 	
 func restore_checkpoint():
+	$Transition/TransitionGUI.visible = true
+	
 	var save_nodes = get_tree().get_nodes_in_group("persist")
 	for i in save_nodes:
 		i.call_deferred("queue_free")
@@ -176,6 +177,11 @@ func restore_checkpoint():
 	for i in projectiles:
 		i.call_deferred("queue_free")
 
+	#Wait to let the player death sink in
+	$Transition/TransitionTimer.start()
+	return
+	
+func _on_TransitionTimer_timeout():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	for i in player_nodes:
 		if !i.has_method("restore_position"):
@@ -201,16 +207,11 @@ func restore_checkpoint():
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	for i in enemies:
 		i.call("get_player")
-	$Transition/TransitionGUI.visible = true
-	$Transition/TransitionTimer.start()
-	get_tree().paused = true
-	return
-	
-func _on_TransitionTimer_timeout():
-	get_tree().paused = false
+		
 	$Transition/TransitionGUI.visible = false
 	return
 	
 func save_and_quit():
+	unpause()
 	emit_signal("save_and_quit")
 	return

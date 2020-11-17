@@ -48,6 +48,7 @@ func _physics_process(_delta):
 	return
 	
 func attack():
+	get_tree().get_root().get_node("MasterScene/SoundManager/LizardShootSpike").play()
 	emit_signal("spikes_fired", position, rotation, damage)
 	return
 
@@ -60,6 +61,7 @@ func _on_SpikeTimer_timeout():
 	
 func died():
 	if(dying == false):
+		get_tree().get_root().get_node("MasterScene/SoundManager/LizardDie").play()
 		dying = true
 		speed = 0
 		$AnimatedSprite.stop()
@@ -73,4 +75,15 @@ func died():
 
 func _on_DespawnTimer_timeout():
 	call_deferred("queue_free")
+	return
+	
+func take_damage(hit_amount):
+	if($DamageImmunity.is_stopped()):
+		hp = hp - hit_amount
+		get_tree().get_root().get_node("MasterScene/SoundManager/LizardDamaged").play()
+		if(hp <= 0):
+			died()
+		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		$DamageImmunity.start()
+		movement_frozen = true
 	return

@@ -53,6 +53,7 @@ func _process(_delta):
 func _on_ExplodeTimer_timeout():
 	emit_signal("toad_exploded", position)
 	$AnimatedSprite.play("Explode")
+	get_tree().get_root().get_node("MasterScene/SoundManager/ToadExplode").play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	if($ExplosionZone.overlaps_body(player)):
 		player.call_deferred("take_damage",damage)
@@ -68,4 +69,15 @@ func died():
 func _on_DeathTimer_timeout():
 	call_deferred("queue_free")
 	emit_signal("toad_died", position)
+	return
+
+func take_damage(hit_amount):
+	if($DamageImmunity.is_stopped()):
+		get_tree().get_root().get_node("MasterScene/SoundManager/ToadDamaged").play()
+		hp = hp - hit_amount
+		if(hp <= 0):
+			died()
+		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
+		$DamageImmunity.start()
+		movement_frozen = true
 	return

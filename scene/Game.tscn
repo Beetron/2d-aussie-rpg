@@ -40,5 +40,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="TransitionTimer" type="Timer" parent="Transition"]
-wait_time = 0.35
+wait_time = 1.5
+one_shot = true
 [connection signal="timeout" from="Transition/TransitionTimer" to="." method="_on_TransitionTimer_timeout"]

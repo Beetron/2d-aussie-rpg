@@ -1,8 +1,117 @@
-[gd_scene format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://script/options.gd" type="Script" id=1]
+[ext_resource path="res://fonts/title_font.tres" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://fonts/PressStart2P-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
 
 [node name="Options" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.079
+anchor_right = 0.5
+anchor_bottom = 0.079
+margin_left = -56.0
+margin_right = 56.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.0
+margin_top = -20.0
+margin_right = 158.0
+margin_bottom = 20.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundEffectsLabel" type="Label" parent="OptionContainer"]
+margin_top = 14.0
+margin_right = 156.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 3 )
+text = "Sound Effects"
+
+[node name="SoundEffectsSlider" type="HSlider" parent="OptionContainer"]
+margin_left = 160.0
+margin_right = 316.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HSplitContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.955
+anchor_right = 0.5
+anchor_bottom = 0.955
+margin_left = -114.0
+margin_top = -22.0
+margin_right = 114.0
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Accept" type="Button" parent="Buttons"]
+margin_right = 108.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 4 )
+text = "Accept"
+align = 0
+
+[node name="Cancel" type="Button" parent="Buttons"]
+margin_left = 120.0
+margin_right = 228.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 5 )
+text = "Cancel"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="OptionContainer/SoundEffectsSlider" to="." method="_on_SoundEffectsSlider_value_changed"]
+[connection signal="pressed" from="Buttons/Accept" to="." method="_on_Accept_pressed"]
+[connection signal="pressed" from="Buttons/Cancel" to="." method="_on_Cancel_pressed"]

@@ -26,14 +26,7 @@ func get_player():
 	return
 
 func take_damage(hit_amount):
-	if($DamageImmunity.is_stopped()):
-		hp = hp - hit_amount
-		if(hp <= 0):
-			died()
-		$AnimatedSprite.modulate = Color(3, 0, 0, 1)
-		$DamageImmunity.start()
-		movement_frozen = true
-	return
+	pass
 
 func died():
 	pass
