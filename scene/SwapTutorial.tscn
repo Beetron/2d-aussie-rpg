@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://img/Keyboard_Black_Mouse_Right.png" type="Texture" id=1]
+[ext_resource path="res://img/swaptut.png" type="Texture" id=2]
+
+[node name="SwapTutorial" type="Node2D"]
+
+[node name="Silhouette" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="RightClick" type="Sprite" parent="."]
+scale = Vector2( 0.240001, 0.240001 )
+texture = ExtResource( 1 )

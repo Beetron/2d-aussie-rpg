@@ -12,6 +12,7 @@ func _ready():
 	return
 
 func interact():
+	$HowToTalk.visible = false
 	if(player_dialogue):
 		emit_signal("started_talking")
 	return

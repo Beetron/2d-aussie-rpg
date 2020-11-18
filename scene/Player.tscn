@@ -177,7 +177,7 @@ __meta__ = {
 "_edit_group_": true
 }
 max_speed = 150
-hp = 3
+hp = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

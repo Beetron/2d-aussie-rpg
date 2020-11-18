@@ -183,7 +183,7 @@ func boomerang_returned():
 	
 func restore_hp():
 	hp = original_HP
-	emit_signal("player_hp_changed", 3)
+	emit_signal("player_hp_changed", 5)
 	return	
 
 func take_damage(hit_amount):
