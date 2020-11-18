@@ -1,4 +1,4 @@
-# 2d-aussie-rpg
+# Larrikin Quest
 
 **A (very) short 2D action-RPG featuring a crocodile-dundee kinda dude.** 
 
