@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://script/options.gd" type="Script" id=1]
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -17,12 +18,24 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=7]
+size = 12
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
@@ -49,31 +62,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionContainer" type="HBoxContainer" parent="."]
-anchor_left = 0.5
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.15
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.85
 anchor_bottom = 0.5
-margin_left = -158.0
-margin_top = -20.0
-margin_right = 158.0
-margin_bottom = 20.0
+margin_top = -48.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXContainer" type="HBoxContainer" parent="OptionsContainer"]
+margin_right = 448.0
+margin_bottom = 16.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundEffectsLabel" type="Label" parent="OptionContainer"]
-margin_top = 14.0
+[node name="SoundEffectsLabel" type="Label" parent="OptionsContainer/SFXContainer"]
+margin_top = 2.0
 margin_right = 156.0
-margin_bottom = 26.0
+margin_bottom = 14.0
 custom_fonts/font = SubResource( 3 )
 text = "Sound Effects"
 
-[node name="SoundEffectsSlider" type="HSlider" parent="OptionContainer"]
+[node name="SoundEffectsSlider" type="HSlider" parent="OptionsContainer/SFXContainer"]
 margin_left = 160.0
-margin_right = 316.0
-margin_bottom = 40.0
+margin_right = 448.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 value = 100.0
@@ -81,6 +99,40 @@ ticks_on_borders = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FullscreenContainer" type="HBoxContainer" parent="OptionsContainer"]
+margin_top = 20.0
+margin_right = 448.0
+margin_bottom = 44.0
+
+[node name="FullscreenLabel" type="Label" parent="OptionsContainer/FullscreenContainer"]
+margin_top = 6.0
+margin_right = 120.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 7 )
+text = "Fullscreen"
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="OptionsContainer/FullscreenContainer"]
+margin_left = 124.0
+margin_right = 148.0
+margin_bottom = 24.0
+
+[node name="BorderlessContainer" type="HBoxContainer" parent="OptionsContainer"]
+margin_top = 48.0
+margin_right = 448.0
+margin_bottom = 72.0
+
+[node name="BorderlessLabel" type="Label" parent="OptionsContainer/BorderlessContainer"]
+margin_top = 6.0
+margin_right = 120.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 8 )
+text = "Borderless"
+
+[node name="BorderlessCheckbox" type="CheckBox" parent="OptionsContainer/BorderlessContainer"]
+margin_left = 124.0
+margin_right = 148.0
+margin_bottom = 24.0
 
 [node name="Buttons" type="HSplitContainer" parent="."]
 anchor_left = 0.5
@@ -98,7 +150,7 @@ __meta__ = {
 [node name="Accept" type="Button" parent="Buttons"]
 margin_right = 108.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Accept"
 align = 0
 
@@ -106,12 +158,14 @@ align = 0
 margin_left = 120.0
 margin_right = 228.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Cancel"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="value_changed" from="OptionContainer/SoundEffectsSlider" to="." method="_on_SoundEffectsSlider_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/SFXContainer/SoundEffectsSlider" to="." method="_on_SoundEffectsSlider_value_changed"]
+[connection signal="toggled" from="OptionsContainer/FullscreenContainer/FullscreenCheckbox" to="." method="_on_FullscreenCheckbox_toggled"]
+[connection signal="toggled" from="OptionsContainer/BorderlessContainer/BorderlessCheckbox" to="." method="_on_BorderlessCheckbox_toggled"]
 [connection signal="pressed" from="Buttons/Accept" to="." method="_on_Accept_pressed"]
 [connection signal="pressed" from="Buttons/Cancel" to="." method="_on_Cancel_pressed"]

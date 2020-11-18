@@ -165,5 +165,7 @@ func restore_options():
 		var saved_sfx_volume = parse_json(saved_options.get_line())
 		var SFX_bus = AudioServer.get_bus_index("SFX")
 		AudioServer.set_bus_volume_db(SFX_bus,saved_sfx_volume)
+		OS.window_fullscreen = parse_json(saved_options.get_line())
+		OS.window_borderless = parse_json(saved_options.get_line())
 	saved_options.close()
 	return
