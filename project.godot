@@ -28,6 +28,8 @@ _global_script_class_icons={
 
 config/name="Larrikin Quest"
 run/main_scene="res://scene/Master.tscn"
+config/icon="res://icon/iconpng.png"
+config/windows_native_icon="res://icon/icon.ico"
 
 [display]
 
